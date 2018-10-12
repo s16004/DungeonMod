@@ -8,13 +8,13 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import net.minecraft.world.WorldServer
 
-object ItemRod : Item()
+object FrostyRod : Item()
 {
     init
     {
         this.maxStackSize = 1
         this.unlocalizedName = "rod"
-        this.registryName = ResourceLocation(FrostyRod.ID, "FrostyRod")
+        this.registryName = ResourceLocation(DungeonMod.ID, "FrostyRod")
     }
 
     override fun onItemUse(player: EntityPlayer?, worldIn: World?, pos: BlockPos?, hand: EnumHand?, facing: EnumFacing?, hitX: Float, hitY: Float, hitZ: Float): EnumActionResult {

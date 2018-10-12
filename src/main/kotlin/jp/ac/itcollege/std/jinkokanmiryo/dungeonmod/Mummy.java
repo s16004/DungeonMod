@@ -22,15 +22,15 @@ public class Mummy {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        /*
+
         if (event.getSide().isClient()) {
-            RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new IRenderFactory<Mummy.EntityMummy>() {
+            RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new IRenderFactory<EntityMummy>() {
                 @Override
-                public Render<? super Mummy.EntityMummy> createRenderFor(RenderManager manager) {
+                public Render<? super EntityMummy> createRenderFor(RenderManager manager) {
                     return new RenderMummy(manager, new ModelMummy(), 0.3f);
                 }
             });
-        }*/
+        }
 
 
         if (event.getSide().isClient()) {

@@ -2,6 +2,7 @@ package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.entity.Entity
 import net.minecraft.init.Items
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
@@ -12,33 +13,37 @@ import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLConstructionEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
+import net.minecraftforge.fml.common.registry.EntityRegistry
 
-@Mod(modid = FrostyRod.ID, name = FrostyRod.Name, version = FrostyRod.Version, modLanguage = "kotlin", modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter")
+@Mod(modid = DungeonMod.ID, name = DungeonMod.Name, version = DungeonMod.Version, modLanguage = "kotlin", modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter")
 @Mod.EventBusSubscriber
-class FrostyRod
+class DungeonMod
 {
     companion object
     {
-        const val ID = "frostyrod"
-        const val Name = "jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.FrostyRod"
+        const val ID = "dungeonmod"
+        const val Name = "DungeonMod"
         const val Version = "1.0.1"
 
-        private val ctab = object : CreativeTabs("frostyrod")
+        private val ctab = object : CreativeTabs("dungeonmod")
         {
             override fun getTabIconItem() = ItemStack(Items.STICK)
         }
 
         @SubscribeEvent @JvmStatic
-        fun register(e: RegistryEvent.Register<Item>) {
-            e.registry.register(ItemRod.setCreativeTab(ctab))
+        fun registeritem(e: RegistryEvent.Register<Item>) {
+            e.registry.register(FrostyRod.setCreativeTab(ctab))
+            e.registry.register(SoulEater.setCreativeTab(ctab))
         }
+
         @Mod.EventHandler
     fun construction(event: FMLConstructionEvent) {
             MinecraftForge.EVENT_BUS.register(this)
         }
         @SubscribeEvent @JvmStatic
     fun registerModels(e: ModelRegistryEvent) {
-            ModelLoader.setCustomModelResourceLocation(ItemRod, 0, ModelResourceLocation(ItemRod.registryName!!,"inventory"))
+            ModelLoader.setCustomModelResourceLocation(FrostyRod, 0, ModelResourceLocation(FrostyRod.registryName!!,"inventory"))
+            ModelLoader.setCustomModelResourceLocation(SoulEater, 0, ModelResourceLocation(SoulEater.registryName!!,"inventory"))
         }
     }
 }

@@ -2,7 +2,7 @@
   "parent": "item/generated",
   "textures":
   {
-    "layer0": "souleater:SoulEater"
+    "layer0": "dungeonmod:souleater"
   },
   "display":
   {

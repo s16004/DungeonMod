@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderMummy extends RenderLiving<EntityLiving> {
 
-    public static final ResourceLocation texture = new ResourceLocation("resources/assets.frostyrod/textures/mummy.png");
+    public static final ResourceLocation texture = new ResourceLocation("resources/assets.dungeonmod/textures/mummy.png");
 
     public RenderMummy (RenderManager rendermanagerIn, ModelBase modelbaseIn, float shadowsizeIn) {
         super (rendermanagerIn, modelbaseIn, shadowsizeIn);
