@@ -1,4 +1,4 @@
-package Mummy;
+package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

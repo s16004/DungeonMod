@@ -1,4 +1,4 @@
-package Mummy;
+package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;

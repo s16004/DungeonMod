@@ -14,7 +14,7 @@ object ItemRod : Item()
     {
         this.maxStackSize = 1
         this.unlocalizedName = "rod"
-        this.registryName = ResourceLocation(FrostyRod.ID, "item_rod")
+        this.registryName = ResourceLocation(FrostyRod.ID, "FrostyRod")
     }
 
     override fun onItemUse(player: EntityPlayer?, worldIn: World?, pos: BlockPos?, hand: EnumHand?, facing: EnumFacing?, hitX: Float, hitY: Float, hitZ: Float): EnumActionResult {
