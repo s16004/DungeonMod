@@ -11,8 +11,8 @@ class ModelMummy : ModelBase() {
     internal var base: ModelRenderer
 
     init {
-        textureWidth = 32
-        textureHeight = 16
+        textureWidth = 64
+        textureHeight = 32
         base = ModelRenderer(this, 0, 0)
         base.addBox(-4f, 16f, -4f, 8, 8, 8)
     }
