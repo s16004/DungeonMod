@@ -63,6 +63,7 @@ class DungeonMod
     fun registerModels(e: ModelRegistryEvent) {
             ModelLoader.setCustomModelResourceLocation(FrostyRod, 0, ModelResourceLocation(FrostyRod.registryName!!,"inventory"))
             ModelLoader.setCustomModelResourceLocation(SoulEater, 0, ModelResourceLocation(SoulEater.registryName!!,"inventory"))
+            ModelLoader.setCustomModelResourceLocation(Soul_of_Grim, 0, ModelResourceLocation(Soul_of_Grim.registryName!!,"inventory"))
         }
     }
 }
