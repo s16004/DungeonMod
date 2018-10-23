@@ -14,7 +14,6 @@ class RenderMummy(rendermanagerIn: RenderManager, modelbaseIn: ModelBase, shadow
     override fun getEntityTexture(entity: EntityLiving): ResourceLocation? {
         return texture
     }
-
     companion object {
 
         val texture = ResourceLocation("resources/assets.dungeonmod/textures/mummy.png")
