@@ -39,6 +39,7 @@ class ModelMummy : ModelBase() {
 
         top = ModelRenderer(this,40, 18)
         top.addBox(2f, 16f, 2f, 6, 8, 6)
+
     }
 
     override fun render(entity: Entity?, f: Float, f1: Float, f2: Float, f3: Float, f4: Float, f5: Float) {
@@ -47,4 +48,8 @@ class ModelMummy : ModelBase() {
         bottom.render(f5)
         top.render(f5)
     }
+
+
+
+
 }

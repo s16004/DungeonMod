@@ -1,0 +1,21 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "#",
+    "w",
+    "w"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:ice",
+      "data": 0
+    },
+    "w": {
+      "item": "minecraft:stick",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "dungeonmod:souleater"
+  }
+}

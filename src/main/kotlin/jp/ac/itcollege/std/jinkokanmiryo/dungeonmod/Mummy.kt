@@ -20,7 +20,7 @@ class Mummy {
 
     @Mod.EventHandler
     fun init(event: FMLInitializationEvent) {
-        EntityRegistry.registerModEntity(ResourceLocation("mummy"), EntityMummy::class.java, "mummy", 0, this, 50, 1, true)
+        EntityRegistry.registerModEntity(ResourceLocation("mummy"), EntityMummy::class.java, "mummy", 0, this, 50, 1, true,192,192)
     }
 
     @Mod.EventHandler
