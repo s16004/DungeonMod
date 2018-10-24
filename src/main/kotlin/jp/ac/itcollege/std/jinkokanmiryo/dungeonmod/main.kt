@@ -1,5 +1,7 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod
 
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.FrostyRod
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.Soul_of_Grim
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.entity.Entity
@@ -63,7 +65,6 @@ class DungeonMod
     fun registerModels(e: ModelRegistryEvent) {
             ModelLoader.setCustomModelResourceLocation(FrostyRod, 0, ModelResourceLocation(FrostyRod.registryName!!,"inventory"))
             ModelLoader.setCustomModelResourceLocation(SoulEater, 0, ModelResourceLocation(SoulEater.registryName!!,"inventory"))
-            ModelLoader.setCustomModelResourceLocation(Soul_of_Grim, 0, ModelResourceLocation(Soul_of_Grim.registryName!!,"inventory"))
         }
     }
 }

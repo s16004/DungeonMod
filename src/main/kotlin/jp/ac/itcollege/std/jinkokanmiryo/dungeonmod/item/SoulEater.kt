@@ -11,14 +11,6 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.*
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import net.minecraft.util.EnumActionResult
-import net.minecraft.util.ActionResult
-import net.minecraft.util.EnumHand
-import sun.audio.AudioPlayer.player
-
-
-
-
 
 object SoulEater : Item()
 {
@@ -28,6 +20,8 @@ object SoulEater : Item()
         this.unlocalizedName = "souleater"
         this.registryName = ResourceLocation(DungeonMod.ID, "SoulEater")
     }
+
+    //経験値消費でHP回復
     private const val CostExp = 1
     override fun onItemRightClick(world: World, player: EntityPlayer, hand: EnumHand): ActionResult<ItemStack> {
 
@@ -38,24 +32,10 @@ object SoulEater : Item()
             player!!.heal(5.0F)
         }
 
-        // 結果を返す
         return ActionResult(EnumActionResult.SUCCESS,stack)
     }
 
-    /*
-    override fun onItemUse(player: EntityPlayer?, worldIn: World?, pos: BlockPos?, hand: EnumHand?, facing: EnumFacing?, hitX: Float, hitY: Float, hitZ: Float): EnumActionResult {
-        if (player != null) {
-            if(player.capabilities.isCreativeMode || player.experienceLevel >= CostExp) {
-
-                if(!player.capabilities.isCreativeMode) player.addExperienceLevel(-CostExp)
-                player!!.heal(5.0F)
-            }
-        }
-
-        return EnumActionResult.SUCCESS
-    }
-    */
-
+    //攻撃力とか速度とか
     override fun getAttributeModifiers(slot: EntityEquipmentSlot, stack: ItemStack): Multimap<String, AttributeModifier> {
         val multimap = HashMultimap.create<String, AttributeModifier>()
 
