@@ -37,11 +37,7 @@ class DungeonMod
         {
             override fun getTabIconItem() = ItemStack(Items.STICK)
         }
-/*
-        fun createEntry() {
-            EntityEntryBuilder<>
-        }
-*/
+
         @SubscribeEvent @JvmStatic
         fun registeritem(e: RegistryEvent.Register<Item>) {
             e.registry.register(FrostyRod.setCreativeTab(ctab))
@@ -55,16 +51,20 @@ class DungeonMod
         }
 
 
+        // 各種描画関連の登録
+            @SubscribeEvent @JvmStatic @SideOnly(Side.CLIENT)
+            fun registerModels(e: ModelRegistryEvent) {
+                ModelLoader.setCustomModelResourceLocation(FrostyRod, 0, ModelResourceLocation(FrostyRod.registryName!!,"inventory"))
+                ModelLoader.setCustomModelResourceLocation(SoulEater, 0, ModelResourceLocation(SoulEater.registryName!!,"inventory"))
+                ModelLoader.setCustomModelResourceLocation(Soul_of_Grim, 0, ModelResourceLocation(Soul_of_Grim.registryName!!,"inventory"))
+                Mobs.registerModels()
+            }
 
         @Mod.EventHandler
     fun construction(event: FMLConstructionEvent) {
             MinecraftForge.EVENT_BUS.register(this)
         }
 
-        @SubscribeEvent @JvmStatic
-    fun registerModels(e: ModelRegistryEvent) {
-            ModelLoader.setCustomModelResourceLocation(FrostyRod, 0, ModelResourceLocation(FrostyRod.registryName!!,"inventory"))
-            ModelLoader.setCustomModelResourceLocation(SoulEater, 0, ModelResourceLocation(SoulEater.registryName!!,"inventory"))
-        }
+
     }
 }

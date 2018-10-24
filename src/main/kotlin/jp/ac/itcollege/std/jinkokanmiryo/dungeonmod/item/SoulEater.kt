@@ -9,7 +9,6 @@ import net.minecraft.inventory.EntityEquipmentSlot
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.util.*
-import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
 object SoulEater : Item()
