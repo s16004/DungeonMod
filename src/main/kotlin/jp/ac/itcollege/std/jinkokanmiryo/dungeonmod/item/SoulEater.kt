@@ -1,8 +1,7 @@
-package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item
+package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod
 
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.Multimap
-import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import net.minecraft.entity.SharedMonsterAttributes
 import net.minecraft.entity.ai.attributes.AttributeModifier
 import net.minecraft.entity.player.EntityPlayer
@@ -21,8 +20,8 @@ object SoulEater : Item()
         this.registryName = ResourceLocation(DungeonMod.ID, "SoulEater")
     }
 
+    //経験値消費でHP回復
     private const val CostExp = 1
-
     override fun onItemRightClick(world: World, player: EntityPlayer, hand: EnumHand): ActionResult<ItemStack> {
 
         val stack = player.getHeldItem(hand)
@@ -32,11 +31,10 @@ object SoulEater : Item()
             player!!.heal(5.0F)
         }
 
-        // 結果を返す
         return ActionResult(EnumActionResult.SUCCESS,stack)
     }
 
-
+    //攻撃力とか速度とか
     override fun getAttributeModifiers(slot: EntityEquipmentSlot, stack: ItemStack): Multimap<String, AttributeModifier> {
         val multimap = HashMultimap.create<String, AttributeModifier>()
 

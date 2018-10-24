@@ -2,12 +2,12 @@
   "type": "forge:ore_shaped",
   "pattern": [
     "#",
-    "w",
+    "#",
     "w"
   ],
   "key": {
     "#": {
-      "item": "minecraft:ice",
+      "item": "dungeonmod:soul_of_grim",
       "data": 0
     },
     "w": {
