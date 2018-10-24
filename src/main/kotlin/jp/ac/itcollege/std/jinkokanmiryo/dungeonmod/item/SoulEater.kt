@@ -1,7 +1,8 @@
-package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod
+package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item
 
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.Multimap
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import net.minecraft.entity.SharedMonsterAttributes
 import net.minecraft.entity.ai.attributes.AttributeModifier
 import net.minecraft.entity.player.EntityPlayer
@@ -11,6 +12,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.*
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
+import sun.audio.AudioPlayer.player
 
 object SoulEater : Item()
 {
@@ -21,12 +23,21 @@ object SoulEater : Item()
         this.registryName = ResourceLocation(DungeonMod.ID, "SoulEater")
     }
 
-    override fun onItemUse(player: EntityPlayer?, worldIn: World?, pos: BlockPos?, hand: EnumHand?, facing: EnumFacing?, hitX: Float, hitY: Float, hitZ: Float): EnumActionResult {
+    private const val CostExp = 1
 
-        player!!.heal(20.0F)
+    override fun onItemRightClick(world: World, player: EntityPlayer, hand: EnumHand): ActionResult<ItemStack> {
 
-        return EnumActionResult.SUCCESS
+        val stack = player.getHeldItem(hand)
+        if(player.capabilities.isCreativeMode || player.experienceLevel >= CostExp) {
+
+            if(!player.capabilities.isCreativeMode) player.addExperienceLevel(-CostExp)
+            player!!.heal(5.0F)
+        }
+
+        // 結果を返す
+        return ActionResult(EnumActionResult.SUCCESS,stack)
     }
+
 
     override fun getAttributeModifiers(slot: EntityEquipmentSlot, stack: ItemStack): Multimap<String, AttributeModifier> {
         val multimap = HashMultimap.create<String, AttributeModifier>()

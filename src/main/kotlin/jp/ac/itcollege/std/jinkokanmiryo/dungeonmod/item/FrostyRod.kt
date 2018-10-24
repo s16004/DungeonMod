@@ -1,4 +1,5 @@
-package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod
+package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.entity.player.EntityPlayerMP
 import net.minecraft.init.Blocks
