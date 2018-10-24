@@ -32,12 +32,10 @@ object SoulEater : Item()
     override fun onItemRightClick(world: World, player: EntityPlayer, hand: EnumHand): ActionResult<ItemStack> {
 
         val stack = player.getHeldItem(hand)
-        if (player != null) {
-            if(player.capabilities.isCreativeMode || player.experienceLevel >= CostExp) {
+        if(player.capabilities.isCreativeMode || player.experienceLevel >= CostExp) {
 
-                if(!player.capabilities.isCreativeMode) player.addExperienceLevel(-CostExp)
-                player!!.heal(5.0F)
-            }
+            if(!player.capabilities.isCreativeMode) player.addExperienceLevel(-CostExp)
+            player!!.heal(5.0F)
         }
 
         // 結果を返す
