@@ -1,8 +1,10 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod
 
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.PyramidBlock
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.FrostyRod
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.Soul_of_Grim
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob.Mobs
+import net.minecraft.block.Block
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.init.Items
@@ -33,7 +35,12 @@ class DungeonMod {
 
         @SubscribeEvent
         @JvmStatic
-        fun registeritem(e: RegistryEvent.Register<Item>) {
+        fun registerBlock(e: RegistryEvent.Register<Block>) {
+            e.registry.register(PyramidBlock.setCreativeTab(ctab))
+        }
+        @SubscribeEvent
+        @JvmStatic
+        fun registerItem(e: RegistryEvent.Register<Item>) {
             e.registry.register(FrostyRod.setCreativeTab(ctab))
             e.registry.register(SoulEater.setCreativeTab(ctab))
             e.registry.register(Soul_of_Grim.setCreativeTab(ctab))
@@ -41,7 +48,7 @@ class DungeonMod {
 
         @SubscribeEvent
         @JvmStatic
-        fun registerentity(event: RegistryEvent.Register<EntityEntry>) {
+        fun registerEntity(event: RegistryEvent.Register<EntityEntry>) {
             Mobs.registerMobs(event.registry)
         }
 
