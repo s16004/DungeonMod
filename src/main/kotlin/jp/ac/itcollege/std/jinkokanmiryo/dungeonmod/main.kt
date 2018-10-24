@@ -60,7 +60,6 @@ class DungeonMod
                 ModelLoader.setCustomModelResourceLocation(SoulEater, 0, ModelResourceLocation(SoulEater.registryName!!,"inventory"))
                 ModelLoader.setCustomModelResourceLocation(Soul_of_Grim, 0, ModelResourceLocation(Soul_of_Grim.registryName!!,"inventory"))
                 Mobs.registerModels()
-
             }
     }
 }
