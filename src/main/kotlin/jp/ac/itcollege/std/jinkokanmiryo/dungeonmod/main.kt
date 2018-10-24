@@ -41,8 +41,8 @@ class DungeonMod {
 
         @SubscribeEvent
         @JvmStatic
-        fun registerentity(e: RegistryEvent.Register<EntityEntry>) {
-
+        fun registerentity(event: RegistryEvent.Register<EntityEntry>) {
+            Mobs.registerMobs(event.registry)
         }
 
 

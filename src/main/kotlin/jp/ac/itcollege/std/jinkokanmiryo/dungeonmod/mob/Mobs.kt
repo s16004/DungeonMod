@@ -20,7 +20,8 @@ object Mobs {
                             eggBackground: Int, eggSpot: Int): EntityEntry {
         return EntityEntryBuilder.create<EntityLiving>()
                 .entity(clazz)
-                .id(ResourceLocation(DungeonMod.ID), id++)
+                .id(ResourceLocation("${DungeonMod.ID}:$name"), id++)
+                .name(name)
                 .factory(factory)
                 .egg(eggBackground, eggSpot)
                 .tracker(80, 3, true)
