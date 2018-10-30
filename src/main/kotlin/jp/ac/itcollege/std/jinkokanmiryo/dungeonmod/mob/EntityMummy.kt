@@ -10,15 +10,30 @@ import net.minecraft.entity.ai.EntityAILookIdle
 import net.minecraft.entity.ai.EntityAIWatchClosest
 import net.minecraft.entity.ai.EntityAIWander
 import net.minecraft.entity.ai.EntityAIAttackMelee
-import net.minecraft.entity.ai.EntityAILeapAtTarget
+//import net.minecraft.entity.ai.EntityAILeapAtTarget
 import net.minecraft.entity.ai.EntityAISwimming
+//import com.sun.xml.internal.bind.v2.model.core.ID
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
+import net.minecraft.util.ResourceLocation
+import net.minecraft.entity.EnumCreatureType
+import net.minecraft.world.biome.Biome
+import net.minecraft.world.gen.structure.ComponentScatteredFeaturePieces
+import net.minecraftforge.fml.common.registry.EntityRegistry
 
+
+//import com.sun.xml.internal.bind.v2.model.core.ID
 
 
 class EntityMummy(worldIn: World) : EntityMob(worldIn) {
+
+    val LOOT_TABLE = ResourceLocation(DungeonMod.ID, "entities/mummy")
+
     init {
         setSize(0.6f, 1.95f)
+        EntityRegistry.addSpawn(EntityMummy::class.java, 20, 1, 4,EnumCreatureType.CREATURE)
     }
+
+
 
     override fun initEntityAI() {
         this.tasks.addTask(0, EntityAISwimming(this))
@@ -45,5 +60,9 @@ class EntityMummy(worldIn: World) : EntityMob(worldIn) {
 
     override fun getEyeHeight(): Float {
         return 1.85f
+    }
+
+    public override fun getLootTable(): ResourceLocation? {
+        return LOOT_TABLE
     }
 }
