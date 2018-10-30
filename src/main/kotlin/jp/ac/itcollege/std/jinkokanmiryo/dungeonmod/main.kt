@@ -7,15 +7,20 @@ import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob.Mobs
 import net.minecraft.block.Block
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.entity.Entity
+import net.minecraft.entity.EntityLiving
 import net.minecraft.init.Items
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
+import net.minecraft.util.ResourceLocation
 import net.minecraftforge.client.event.ModelRegistryEvent
 import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.event.RegistryEvent
+import net.minecraftforge.fml.client.registry.RenderingRegistry
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLConstructionEvent
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.registry.EntityEntry
 import net.minecraftforge.fml.relauncher.Side
@@ -38,9 +43,10 @@ class DungeonMod {
         fun registerBlock(e: RegistryEvent.Register<Block>) {
             e.registry.register(PyramidBlock.setCreativeTab(ctab))
         }
+
         @SubscribeEvent
         @JvmStatic
-        fun registerItem(e: RegistryEvent.Register<Item>) {
+        fun registeritem(e: RegistryEvent.Register<Item>) {
             e.registry.register(FrostyRod.setCreativeTab(ctab))
             e.registry.register(SoulEater.setCreativeTab(ctab))
             e.registry.register(Soul_of_Grim.setCreativeTab(ctab))
@@ -51,7 +57,6 @@ class DungeonMod {
         fun registerEntity(event: RegistryEvent.Register<EntityEntry>) {
             Mobs.registerMobs(event.registry)
         }
-
 
         // 各種描画関連の登録
         @SubscribeEvent
@@ -68,7 +73,5 @@ class DungeonMod {
         fun construction(event: FMLConstructionEvent) {
             MinecraftForge.EVENT_BUS.register(this)
         }
-
-
     }
 }
