@@ -39,6 +39,7 @@ object Mobs {
      */
     fun registerMobs(registry: IForgeRegistry<EntityEntry>) {
         registry.register(createEntry(EntityMummy::class.java, "mummy", ::EntityMummy, 0xffFFff, 0xffA500))
+        resistry.
     }
 
     /**
