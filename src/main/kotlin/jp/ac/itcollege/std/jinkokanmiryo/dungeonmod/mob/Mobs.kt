@@ -2,6 +2,7 @@ package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob
 
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.entity.RenderMummy
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.entity.RenderMummyArcher
 import net.minecraft.entity.EntityLiving
 import net.minecraft.entity.EnumCreatureType
 import net.minecraft.init.Biomes
@@ -38,8 +39,8 @@ object Mobs {
      * SubscribeEventのRegistryEvent.Register<EntityEntry>で呼び出す
      */
     fun registerMobs(registry: IForgeRegistry<EntityEntry>) {
-        registry.register(createEntry(EntityMummy::class.java, "mummy", ::EntityMummy, 0xffFFff, 0xffA500))
-        resistry.
+        registry.register(createEntry(EntityMummy::class.java, "mummy", ::EntityMummy, 0xffFFff, 0xffFFff))
+        registry.register((createEntry(EntityMummyArcher::class.java, "mummy_archer",::EntityMummyArcher,0xffFFff, 0xffFFff)))
     }
 
     /**
@@ -49,6 +50,9 @@ object Mobs {
     fun registerModels() {
         RenderingRegistry.registerEntityRenderingHandler(EntityMummy::class.java) {
             RenderMummy(it)
+        }
+        RenderingRegistry.registerEntityRenderingHandler(EntityMummyArcher::class.java){
+            RenderMummyArcher(it)
         }
     }
 }

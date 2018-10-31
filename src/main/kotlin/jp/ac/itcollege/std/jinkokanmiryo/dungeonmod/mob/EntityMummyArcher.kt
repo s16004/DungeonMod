@@ -37,8 +37,8 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob {
 
     override fun initEntityAI() {
         this.tasks.addTask(0, EntityAISwimming(this))
-        this.tasks.addTask(3, EntityAIAttackMelee(this, 1.0, false))
-        this.tasks.addTask(2,EntityAIAttackRangedBow(this, 2.0, 20, 15.0F))
+        //this.tasks.addTask(3, EntityAIAttackMelee(this, 1.0, false))
+        //this.tasks.addTask(2,EntityAIAttackRangedBow(this, 2.0, 20, 15.0F))
         this.tasks.addTask(6, EntityAIWander(this, 1.0))
         this.tasks.addTask(7, EntityAIWatchClosest(this, EntityPlayer::class.java, 8.0f))
         this.tasks.addTask(7, EntityAILookIdle(this))
