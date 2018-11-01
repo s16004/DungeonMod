@@ -8,7 +8,6 @@ import net.minecraft.entity.monster.EntityMob
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
-import net.minecraftforge.fml.common.registry.EntityRegistry
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 import net.minecraft.inventory.EntityEquipmentSlot
@@ -20,6 +19,9 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob {
     }
 
     override fun attackEntityWithRangedAttack(target: EntityLivingBase, distanceFactor: Float) {
+        if (!target.isDead) {
+            //Ranged.rangedAttack(target, this, distanceFactor)
+        }
     }
 
     val LOOT_TABLE = ResourceLocation(DungeonMod.ID, "entities/mummy")
@@ -34,7 +36,6 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob {
         this.tasks.addTask(4, EntityAIWatchClosest(this, EntityPlayer::class.java, 8.0f))
         this.tasks.addTask(4, EntityAILookIdle(this))
         this.targetTasks.addTask(1, EntityAIHurtByTarget(this, true))
-
         this.targetTasks.addTask(2, EntityAINearestAttackableTarget(this, EntityPlayer::class.java, true))
     }
 
@@ -42,7 +43,7 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob {
     override fun applyEntityAttributes() {
         super.applyEntityAttributes()
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).baseValue = 20.0
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).baseValue = 0.3
+        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).baseValue = 0.26
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).baseValue = 3.0
     }
 
