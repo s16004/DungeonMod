@@ -6,18 +6,22 @@ import net.minecraft.entity.SharedMonsterAttributes
 import net.minecraft.entity.ai.attributes.AttributeModifier
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.inventory.EntityEquipmentSlot
-import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
-import net.minecraft.util.*
+import net.minecraft.item.ItemSword
+import net.minecraft.util.ActionResult
+import net.minecraft.util.EnumActionResult
+import net.minecraft.util.EnumHand
+import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 
-object SoulEater : Item()
+object SoulEater : ItemSword(ToolMaterial.IRON)
 {
     init
     {
         this.maxStackSize = 1
         this.unlocalizedName = "souleater"
         this.registryName = ResourceLocation(DungeonMod.ID, "SoulEater")
+
     }
 
     //経験値消費でHP回復
@@ -44,6 +48,9 @@ object SoulEater : Item()
 
             multimap.put(SharedMonsterAttributes.ATTACK_SPEED.name,
                     AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -2.6, 0))
+
+
+
 
         }
 

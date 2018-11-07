@@ -38,9 +38,10 @@ class DungeonMod {
         fun registerBlock(e: RegistryEvent.Register<Block>) {
             e.registry.register(PyramidBlock.setCreativeTab(ctab))
         }
+
         @SubscribeEvent
         @JvmStatic
-        fun registerItem(e: RegistryEvent.Register<Item>) {
+        fun registeritem(e: RegistryEvent.Register<Item>) {
             e.registry.register(FrostyRod.setCreativeTab(ctab))
             e.registry.register(SoulEater.setCreativeTab(ctab))
             e.registry.register(Soul_of_Grim.setCreativeTab(ctab))
@@ -51,7 +52,6 @@ class DungeonMod {
         fun registerEntity(event: RegistryEvent.Register<EntityEntry>) {
             Mobs.registerMobs(event.registry)
         }
-
 
         // 各種描画関連の登録
         @SubscribeEvent
@@ -68,7 +68,5 @@ class DungeonMod {
         fun construction(event: FMLConstructionEvent) {
             MinecraftForge.EVENT_BUS.register(this)
         }
-
-
     }
 }

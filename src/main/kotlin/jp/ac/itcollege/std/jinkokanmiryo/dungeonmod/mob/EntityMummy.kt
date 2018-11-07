@@ -1,27 +1,15 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob
 
+
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
+import net.minecraft.entity.EnumCreatureType
 import net.minecraft.entity.SharedMonsterAttributes
+import net.minecraft.entity.ai.*
 import net.minecraft.entity.monster.EntityMob
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.world.World
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget
-import net.minecraft.entity.ai.EntityAIHurtByTarget
-import net.minecraft.entity.ai.EntityAILookIdle
-import net.minecraft.entity.ai.EntityAIWatchClosest
-import net.minecraft.entity.ai.EntityAIWander
-import net.minecraft.entity.ai.EntityAIAttackMelee
-//import net.minecraft.entity.ai.EntityAILeapAtTarget
-import net.minecraft.entity.ai.EntityAISwimming
-//import com.sun.xml.internal.bind.v2.model.core.ID
-import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import net.minecraft.util.ResourceLocation
-import net.minecraft.entity.EnumCreatureType
-import net.minecraft.world.biome.Biome
-import net.minecraft.world.gen.structure.ComponentScatteredFeaturePieces
+import net.minecraft.world.World
 import net.minecraftforge.fml.common.registry.EntityRegistry
-
-
-//import com.sun.xml.internal.bind.v2.model.core.ID
 
 
 class EntityMummy(worldIn: World) : EntityMob(worldIn) {
@@ -30,10 +18,7 @@ class EntityMummy(worldIn: World) : EntityMob(worldIn) {
 
     init {
         setSize(0.6f, 1.95f)
-        EntityRegistry.addSpawn(EntityMummy::class.java, 20, 1, 4,EnumCreatureType.CREATURE)
     }
-
-
 
     override fun initEntityAI() {
         this.tasks.addTask(0, EntityAISwimming(this))

@@ -2,12 +2,17 @@ package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob
 
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.entity.RenderMummy
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.entity.RenderMummyArcher
 import net.minecraft.entity.EntityLiving
+import net.minecraft.entity.EnumCreatureType
+import net.minecraft.init.Biomes
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
+import net.minecraft.world.biome.BiomeDesert
 import net.minecraftforge.fml.client.registry.RenderingRegistry
 import net.minecraftforge.fml.common.registry.EntityEntry
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder
+import net.minecraftforge.fml.common.registry.ForgeRegistries.BIOMES
 import net.minecraftforge.registries.IForgeRegistry
 
 object Mobs {
@@ -24,6 +29,7 @@ object Mobs {
                 .name(name)
                 .factory(factory)
                 .egg(eggBackground, eggSpot)
+                .spawn(EnumCreatureType.MONSTER, 200, 1, 25, Biomes.DESERT,Biomes.DESERT_HILLS)
                 .tracker(80, 3, true)
                 .build()
     }
@@ -33,7 +39,8 @@ object Mobs {
      * SubscribeEventのRegistryEvent.Register<EntityEntry>で呼び出す
      */
     fun registerMobs(registry: IForgeRegistry<EntityEntry>) {
-        registry.register(createEntry(EntityMummy::class.java, "mummy", ::EntityMummy, 0xffFFff, 0xffA500))
+        registry.register(createEntry(EntityMummy::class.java, "mummy", ::EntityMummy, 0xffFFff, 0xffFFff))
+        registry.register((createEntry(EntityMummyArcher::class.java, "mummy_archer",::EntityMummyArcher,0xffFFff, 0xffFFff)))
     }
 
     /**
@@ -43,6 +50,9 @@ object Mobs {
     fun registerModels() {
         RenderingRegistry.registerEntityRenderingHandler(EntityMummy::class.java) {
             RenderMummy(it)
+        }
+        RenderingRegistry.registerEntityRenderingHandler(EntityMummyArcher::class.java){
+            RenderMummyArcher(it)
         }
     }
 }
