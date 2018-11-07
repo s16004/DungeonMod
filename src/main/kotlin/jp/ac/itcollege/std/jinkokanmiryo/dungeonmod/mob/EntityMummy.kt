@@ -18,7 +18,6 @@ class EntityMummy(worldIn: World) : EntityMob(worldIn) {
 
     init {
         setSize(0.6f, 1.95f)
-        EntityRegistry.addSpawn(EntityMummy::class.java, 20, 1, 4, EnumCreatureType.CREATURE)
     }
 
     override fun initEntityAI() {

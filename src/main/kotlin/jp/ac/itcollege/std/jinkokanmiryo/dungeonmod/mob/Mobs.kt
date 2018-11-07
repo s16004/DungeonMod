@@ -29,7 +29,7 @@ object Mobs {
                 .name(name)
                 .factory(factory)
                 .egg(eggBackground, eggSpot)
-                .spawn(EnumCreatureType.MONSTER, 2000, 1, 50, Biomes.DESERT,Biomes.DESERT_HILLS)
+                .spawn(EnumCreatureType.MONSTER, 200, 1, 25, Biomes.DESERT,Biomes.DESERT_HILLS)
                 .tracker(80, 3, true)
                 .build()
     }

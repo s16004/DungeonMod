@@ -19,12 +19,10 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob {
     }
 
     override fun attackEntityWithRangedAttack(target: EntityLivingBase, distanceFactor: Float) {
-        if (!target.isDead) {
-            //Ranged.rangedAttack(target, this, distanceFactor)
-        }
+
     }
 
-    val LOOT_TABLE = ResourceLocation(DungeonMod.ID, "entities/mummy")
+    val LOOT_TABLE = ResourceLocation(DungeonMod.ID, "entities/mummy_archer")
 
     init {
         setSize(0.6f, 1.95f)

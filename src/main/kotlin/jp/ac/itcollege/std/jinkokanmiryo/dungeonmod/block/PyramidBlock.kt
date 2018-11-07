@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack
 import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraft.util.NonNullList
 import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.item.Item
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fml.common.registry.EntityEntry
 import net.minecraftforge.fml.relauncher.Side
