@@ -32,11 +32,13 @@ object PyramidBlock: Block(Material.ROCK) {
         // デフォルトのStateを設定
         this.setDefaultState(this.blockState.getBaseState())
 
+        //破壊耐性
         this.setBlockUnbreakable()
 
-        this.unlocalizedName = "Pyramid Block"
-        this.registryName = ResourceLocation(DungeonMod.ID, "Pyramid Block")
+        this.unlocalizedName = "pyramid_block"
+        this.registryName = ResourceLocation(DungeonMod.ID, "PyramidBlock")
 
+        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     }
 
     /**

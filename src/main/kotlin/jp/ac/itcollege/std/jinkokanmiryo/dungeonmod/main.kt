@@ -20,6 +20,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.registry.EntityEntry
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import net.minecraftforge.common.ForgeVersion.MOD_ID
+
+
 
 @Mod(modid = DungeonMod.ID, name = DungeonMod.Name, version = DungeonMod.Version, modLanguage = "kotlin", modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter")
 @Mod.EventBusSubscriber
@@ -53,6 +56,8 @@ class DungeonMod {
             Mobs.registerMobs(event.registry)
         }
 
+        var pyramidBlock: Block? = null
+
         // 各種描画関連の登録
         @SubscribeEvent
         @JvmStatic
@@ -62,6 +67,9 @@ class DungeonMod {
             ModelLoader.setCustomModelResourceLocation(SoulEater, 0, ModelResourceLocation(SoulEater.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(Soul_of_Grim, 0, ModelResourceLocation(Soul_of_Grim.registryName!!, "inventory"))
             Mobs.registerModels()
+            //ブロック
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(pyramidBlock), 0,
+                    net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:pyramid_block_item_model", "inventory"))
         }
 
         @Mod.EventHandler

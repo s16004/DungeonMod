@@ -13,6 +13,7 @@ object FrostyRod : Item()
 {
     init
     {
+        this.maxDamage = 300
         this.maxStackSize = 1
         this.unlocalizedName = "rod"
         this.registryName = ResourceLocation(DungeonMod.ID, "FrostyRod")
