@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation
 
 class RenderMummy(renderManager: RenderManager) : RenderBiped<EntityMummy>(renderManager, ModelMummy(), 0.5f) {
     companion object {
-        val MUMMY_TEXTURES = ResourceLocation("${DungeonMod.ID}:textures/mummy.png")
+        val MUMMY_TEXTURES = ResourceLocation("${DungeonMod.ID}:textures/entity/mummy.png")
     }
 
     val layerBipedArmor = object : LayerBipedArmor(this) {
