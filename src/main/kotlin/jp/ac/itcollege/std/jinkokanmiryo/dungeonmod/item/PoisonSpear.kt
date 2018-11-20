@@ -3,40 +3,37 @@ package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.Multimap
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
+import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.SharedMonsterAttributes
 import net.minecraft.entity.ai.attributes.AttributeModifier
 import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.init.MobEffects
 import net.minecraft.inventory.EntityEquipmentSlot
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemSword
-import net.minecraft.util.ActionResult
-import net.minecraft.util.EnumActionResult
-import net.minecraft.util.EnumHand
+import net.minecraft.potion.PotionEffect
 import net.minecraft.util.ResourceLocation
-import net.minecraft.world.World
+import java.util.UUID
 
-object SoulEater : ItemSword(ToolMaterial.IRON)
-{
-    init
-    {
+
+
+object PoisonSpear : ItemSword(ToolMaterial.IRON) {
+    init {
         this.maxStackSize = 1
-        this.unlocalizedName = "souleater"
-        this.registryName = ResourceLocation(DungeonMod.ID, "SoulEater")
+        this.unlocalizedName = "poisonspear"
+        this.registryName = ResourceLocation(DungeonMod.ID, "PoisonSpear")
 
     }
 
-    //経験値消費でHP回復
-    private const val CostExp = 1
-    override fun onItemRightClick(world: World, player: EntityPlayer, hand: EnumHand): ActionResult<ItemStack> {
+    val REACH_MODIFIER = UUID.fromString("7f10172d-de69-49d7-81bd-9594286a6827")
 
-        val stack = player.getHeldItem(hand)
-        if(player.capabilities.isCreativeMode || player.experienceLevel >= CostExp) {
+    //攻撃時毒付与
+    override fun hitEntity(stack: ItemStack, target: EntityLivingBase, attacker: EntityLivingBase): Boolean {
 
-            if(!player.capabilities.isCreativeMode) player.addExperienceLevel(-CostExp)
-            player!!.heal(5.0F)
+        if (super.hitEntity(stack, target, attacker)) {
+            target.addPotionEffect(PotionEffect(MobEffects.POISON, 70, 0))
         }
-
-        return ActionResult(EnumActionResult.SUCCESS,stack)
+        return super.hitEntity(stack, target, attacker)
     }
 
     //攻撃力とか速度とか
@@ -45,14 +42,12 @@ object SoulEater : ItemSword(ToolMaterial.IRON)
 
         if (slot == EntityEquipmentSlot.MAINHAND) {
             multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.name,
-                    AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier",7.0,0))
+                    AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 6.0, 0))
 
             multimap.put(SharedMonsterAttributes.ATTACK_SPEED.name,
-                    AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -2.6, 0))
+                    AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -3.0, 0))
 
-
-
-
+            multimap.put(EntityPlayer.REACH_DISTANCE.name, AttributeModifier(REACH_MODIFIER, "Weapon modifier", 3.0, 0))
         }
 
         return multimap

@@ -1,0 +1,41 @@
+{
+  "pools": [
+    {
+      "name": "Soul_of_Grim",
+      "rolls": 1,
+      "entries": [{
+        "type": "item",
+        "name": "dungeonmod:Soul_of_Grim",
+        "conditions": [{ "condition": "random_chance", "chance": 0.1 }],
+        "functions": [
+          { "function": "set_count", "count": { "min": 0, "max": 1 } },
+          { "function": "looting_enchant", "count": { "min": 0, "max": 1 } }
+        ]
+      }]
+    },
+    {
+      "name": "Arrow",
+      "rolls": 1,
+      "entries": [{
+        "type": "item",
+        "name": "minecraft:arrow",
+        "functions": [
+          { "function": "set_count", "count": { "min": 0, "max": 2 } },
+          { "function": "looting_enchant", "count": { "min": 0, "max": 1 } }
+        ]
+      }]
+    },
+    {
+      "name": "Rotten Flesh",
+      "rolls": 1,
+      "entries": [{
+        "type": "item",
+        "name": "minecraft:rotten_flesh",
+        "functions": [
+          { "function": "looting_enchant", "count": { "min": 0, "max": 1 } }
+        ]
+      }]
+    }
+
+  ]
+}

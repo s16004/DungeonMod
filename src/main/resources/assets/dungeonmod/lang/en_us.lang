@@ -1,7 +1,9 @@
 item.rod.name=Frosty Rod
 item.souleater.name=Soul Eater
+item.poisonspear.name=Poison Spear
 item.soul_of_grim.name=Soul of Grim
 item.scorpion_tail.name=Scorpion Tail
 entity.mummy_archer.name=Mummy Archer
 entity.mummy.name=Mummy
+entity.scorpion.name=Scorpion
 block.pyramidblock.name=Pyramid Block
