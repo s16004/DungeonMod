@@ -4,7 +4,7 @@
     "textures": {
       "particle": "dungeonmod:pyramid_block"
     },
-    "model": "dungeonmod:models/pyramid_block_model"
+    "model": "dungeonmod:pyramid_block_model"
   },
   "variants": {
     "normal": [{

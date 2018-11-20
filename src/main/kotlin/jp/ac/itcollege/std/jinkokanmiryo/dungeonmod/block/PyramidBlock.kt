@@ -36,7 +36,7 @@ object PyramidBlock: Block(Material.ROCK) {
         this.setBlockUnbreakable()
 
         this.unlocalizedName = "pyramid_block"
-        this.registryName = ResourceLocation(DungeonMod.ID, "PyramidBlock")
+        this.registryName = ResourceLocation(DungeonMod.ID, "pyramid_block")
 
         this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     }
