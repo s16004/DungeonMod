@@ -1,7 +1,8 @@
-package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod
+package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item
 
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.Multimap
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import net.minecraft.entity.SharedMonsterAttributes
 import net.minecraft.entity.ai.attributes.AttributeModifier
 import net.minecraft.entity.player.EntityPlayer
