@@ -24,9 +24,6 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
     override fun setSwingingArms(swingingArms: Boolean) {
     }
 
-    //override fun attackEntityWithRangedAttack(target: EntityLivingBase, distanceFactor: Float) {
-    //}
-
     val LOOT_TABLE = ResourceLocation(DungeonMod.ID, "entities/mummy_archer")
 
     init {
@@ -100,7 +97,7 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
     }
 
     override fun getExperiencePoints(player: EntityPlayer): Int {
-        experienceValue = 8
+        experienceValue = 12
         return super.getExperiencePoints(player)
     }
 

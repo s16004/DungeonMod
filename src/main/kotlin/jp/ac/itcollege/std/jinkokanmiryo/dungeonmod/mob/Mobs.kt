@@ -3,6 +3,7 @@ package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.entity.RenderMummy
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.entity.RenderMummyArcher
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.entity.RenderScorpion
 import net.minecraft.entity.EntityLiving
 import net.minecraft.entity.EnumCreatureType
 import net.minecraft.init.Biomes
@@ -41,6 +42,7 @@ object Mobs {
     fun registerMobs(registry: IForgeRegistry<EntityEntry>) {
         registry.register(createEntry(EntityMummy::class.java, "mummy", ::EntityMummy, 0xffFFff, 0xffFFff))
         registry.register((createEntry(EntityMummyArcher::class.java, "mummy_archer",::EntityMummyArcher,0xffFFff, 0xffFFff)))
+        registry.register(createEntry(EntityScorpion::class.java, "scorpion",::EntityScorpion,0xffFFff, 0xffFFff ))
     }
 
     /**
@@ -53,6 +55,9 @@ object Mobs {
         }
         RenderingRegistry.registerEntityRenderingHandler(EntityMummyArcher::class.java){
             RenderMummyArcher(it)
+        }
+        RenderingRegistry.registerEntityRenderingHandler(EntityScorpion::class.java) {
+            RenderScorpion(it)
         }
     }
 }
