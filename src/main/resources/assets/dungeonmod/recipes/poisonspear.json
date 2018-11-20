@@ -1,0 +1,21 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "#",
+    "w",
+    "w"
+  ],
+  "key": {
+    "#": {
+      "item": "dungeonmod:scorpion_tail",
+      "data": 0
+    },
+    "w": {
+      "item": "minecraft:iron_ingot",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "dungeonmod:poisonspear"
+  }
+}
