@@ -21,17 +21,20 @@ import net.minecraftforge.registries.IForgeRegistry
 import javax.annotation.Nullable
 import net.minecraft.util.DamageSource
 import net.minecraft.block.state.IBlockState
+import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.entity.Entity
+import net.minecraft.entity.EntityLivingBase
 import net.minecraft.util.math.BlockPos
 import net.minecraft.pathfinding.PathNodeType
 import net.minecraft.world.IBlockAccess
 import net.minecraft.util.EnumFacing
 
 
-object PyramidBlock: Block(Material.ROCK) {
+object DamageBlock: Block(Material.ROCK) {
     init {
         // クリエイティブタブ
         this.setCreativeTab(CreativeTabs.DECORATIONS)
+
         // 採掘したときの固さ。大きいほど採掘が遅い
         this.setHardness(3.0f)
         // 爆発耐性
@@ -39,13 +42,13 @@ object PyramidBlock: Block(Material.ROCK) {
         // デフォルトのStateを設定
         this.setDefaultState(this.blockState.getBaseState())
 
+        this.setSoundType(SoundType.SAND)
+
         //破壊耐性
         this.setBlockUnbreakable()
 
-        this.setSoundType(SoundType.SLIME)
-
-        this.unlocalizedName = "pyramid_block"
-        this.registryName = ResourceLocation(DungeonMod.ID, "pyramid_block")
+        this.unlocalizedName = "damage_block"
+        this.registryName = ResourceLocation(DungeonMod.ID, "damage_block")
 
         this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     }
@@ -59,15 +62,27 @@ object PyramidBlock: Block(Material.ROCK) {
     }
 
 
-   // @SideOnly(Side.CLIENT)
+    // @SideOnly(Side.CLIENT)
     //fun addInformation(stack: ItemStack, @Nullable world: World, tooltip: List<String>, advanced: ITooltipFlag) {
     //}
 
     fun registerBlocks(registry: IForgeRegistry<Block>) {
-        registry.register(PyramidBlock)
+        registry.register(DamageBlock)
+    }
+
+    override fun onEntityCollidedWithBlock(worldIn: World, pos: BlockPos, state: IBlockState, entityIn: Entity) {
+        entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0f)
     }
 
 
+    //1damage
+    override fun onEntityWalk(worldIn: World, pos: BlockPos, entityIn: Entity) {
+        if (!entityIn.isImmuneToFire && entityIn is EntityLivingBase && !EnchantmentHelper.hasFrostWalkerEnchantment(entityIn)) {
+            entityIn.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0f)
+        }
+
+        super.onEntityWalk(worldIn, pos, entityIn)
+    }
 
 
 }

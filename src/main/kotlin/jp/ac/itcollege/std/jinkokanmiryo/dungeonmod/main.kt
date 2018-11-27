@@ -1,5 +1,6 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod
 
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.DamageBlock
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.PyramidBlock
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.FrostyRod
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.Soul_of_Grim
@@ -40,6 +41,7 @@ class DungeonMod {
         @JvmStatic
         fun registerBlock(e: RegistryEvent.Register<Block>) {
             e.registry.register(PyramidBlock.setCreativeTab(ctab))
+            e.registry.register(DamageBlock.setCreativeTab(ctab))
         }
 
         @SubscribeEvent
@@ -57,6 +59,7 @@ class DungeonMod {
         }
 
         var pyramidBlock: Block? = null
+        val damageBlock: Block? = null
 
         // 各種描画関連の登録
         @SubscribeEvent
@@ -70,6 +73,10 @@ class DungeonMod {
             //ブロック
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(pyramidBlock), 0,
                     net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:pyramid_block_item_model", "inventory"))
+
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(damageBlock), 0,
+                    net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:damage_block_item_model", "inventory"))
+
         }
 
         @Mod.EventHandler
