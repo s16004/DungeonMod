@@ -1,6 +1,5 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob
 
-
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityLivingBase
@@ -17,12 +16,12 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.common.registry.EntityRegistry
 
 
-class EntityMummy(worldIn: World) : EntityMob(worldIn) {
+class EntityScorpion(worldIn: World) : EntityMob(worldIn) {
 
-    val LOOT_TABLE = ResourceLocation(DungeonMod.ID, "entities/mummy")
+    val LOOT_TABLE = ResourceLocation(DungeonMod.ID, "entities/scorpion")
 
     init {
-        setSize(0.6f, 1.95f)
+        setSize(0.6f, 0.6f)
     }
 
     override fun initEntityAI() {
@@ -38,18 +37,45 @@ class EntityMummy(worldIn: World) : EntityMob(worldIn) {
 
     override fun applyEntityAttributes() {
         super.applyEntityAttributes()
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).baseValue = 26.0
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).baseValue = 0.23
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).baseValue = 4.0
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).baseValue = 15.0
+        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).baseValue = 0.3
+        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).baseValue = 3.0
     }
 
+    override fun attackEntityAsMob(entityIn: Entity): Boolean {
+        if (super.attackEntityAsMob(entityIn)) {
+            if (entityIn is EntityLivingBase) {
+                var i = 0
+
+                if (this.world.difficulty == EnumDifficulty.NORMAL) {
+                    i = 7
+                } else if (this.world.difficulty == EnumDifficulty.HARD) {
+                    i = 15
+                }
+
+                if (i > 0) {
+                    entityIn.addPotionEffect(PotionEffect(MobEffects.POISON, i * 20, 0))
+                }
+            }
+
+            return true
+        } else {
+            return false
+        }
+    }
+
+    override fun isPotionApplicable(potioneffectIn: PotionEffect): Boolean {
+        return if (potioneffectIn.potion === MobEffects.POISON) false else super.isPotionApplicable(potioneffectIn)
+    }
+
+
     override fun getExperiencePoints(player: EntityPlayer): Int {
-        experienceValue = 12
+        experienceValue = 10
         return super.getExperiencePoints(player)
     }
 
     override fun getEyeHeight(): Float {
-        return 1.85f
+        return 0.7f
     }
 
     public override fun getLootTable(): ResourceLocation? {

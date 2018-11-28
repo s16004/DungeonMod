@@ -4,8 +4,8 @@ import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.DamageBlock
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.PyramidBlock
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.FrostyRod
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.Soul_of_Grim
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.*
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob.Mobs
-import net.minecraft.block.Block
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.init.Items
@@ -49,7 +49,9 @@ class DungeonMod {
         fun registeritem(e: RegistryEvent.Register<Item>) {
             e.registry.register(FrostyRod.setCreativeTab(ctab))
             e.registry.register(SoulEater.setCreativeTab(ctab))
+            e.registry.register(PoisonSpear.setCreativeTab(ctab))
             e.registry.register(Soul_of_Grim.setCreativeTab(ctab))
+            e.registry.register(Scorpion_Tail.setCreativeTab(ctab))
         }
 
         @SubscribeEvent
@@ -68,7 +70,9 @@ class DungeonMod {
         fun registerModels(e: ModelRegistryEvent) {
             ModelLoader.setCustomModelResourceLocation(FrostyRod, 0, ModelResourceLocation(FrostyRod.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(SoulEater, 0, ModelResourceLocation(SoulEater.registryName!!, "inventory"))
+            ModelLoader.setCustomModelResourceLocation(PoisonSpear, 0, ModelResourceLocation(PoisonSpear.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(Soul_of_Grim, 0, ModelResourceLocation(Soul_of_Grim.registryName!!, "inventory"))
+            ModelLoader.setCustomModelResourceLocation(Scorpion_Tail, 0, ModelResourceLocation(Scorpion_Tail.registryName!!, "inventory"))
             Mobs.registerModels()
             //ブロック
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(pyramidBlock), 0,
