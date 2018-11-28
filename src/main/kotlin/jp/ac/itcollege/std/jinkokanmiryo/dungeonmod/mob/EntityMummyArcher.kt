@@ -102,7 +102,7 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
     }
 
     override fun getEyeHeight(): Float {
-        return 1.85f
+        return 1.80f
     }
 
     public override fun getLootTable(): ResourceLocation? {

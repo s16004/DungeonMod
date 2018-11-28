@@ -49,7 +49,7 @@ class EntityMummy(worldIn: World) : EntityMob(worldIn) {
     }
 
     override fun getEyeHeight(): Float {
-        return 1.85f
+        return 1.80f
     }
 
     public override fun getLootTable(): ResourceLocation? {

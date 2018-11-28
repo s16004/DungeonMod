@@ -15,17 +15,13 @@ import net.minecraft.potion.PotionEffect
 import net.minecraft.util.ResourceLocation
 import java.util.UUID
 
-
-
-object PoisonSpear : ItemSword(ToolMaterial.IRON) {
+object Gae_Buaifnech : ItemSword(ToolMaterial.IRON) {
     init {
         this.maxStackSize = 1
-        this.unlocalizedName = "poisonspear"
-        this.registryName = ResourceLocation(DungeonMod.ID, "PoisonSpear")
+        this.unlocalizedName = "gae_buaifnech"
+        this.registryName = ResourceLocation(DungeonMod.ID, "gae_buaifnech")
 
     }
-
-    val REACH_MODIFIER = UUID.fromString("7f10172d-de69-49d7-81bd-9594286a6827")
 
     //攻撃時毒付与
     override fun hitEntity(stack: ItemStack, target: EntityLivingBase, attacker: EntityLivingBase): Boolean {
@@ -35,6 +31,8 @@ object PoisonSpear : ItemSword(ToolMaterial.IRON) {
         }
         return super.hitEntity(stack, target, attacker)
     }
+
+    val REACH_MODIFIER = UUID.fromString("7f10172d-de69-49d7-81bd-9594286a6827")
 
     //攻撃力とか速度とか
     override fun getAttributeModifiers(slot: EntityEquipmentSlot, stack: ItemStack): Multimap<String, AttributeModifier> {
