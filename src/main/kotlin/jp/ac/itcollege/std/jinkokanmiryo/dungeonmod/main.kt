@@ -49,7 +49,7 @@ class DungeonMod {
         fun registeritem(e: RegistryEvent.Register<Item>) {
             e.registry.register(FrostyRod.setCreativeTab(ctab))
             e.registry.register(SoulEater.setCreativeTab(ctab))
-            e.registry.register(PoisonSpear.setCreativeTab(ctab))
+            e.registry.register(Gae_Buaifnech.setCreativeTab(ctab))
             e.registry.register(Soul_of_Grim.setCreativeTab(ctab))
             e.registry.register(Scorpion_Tail.setCreativeTab(ctab))
         }
@@ -70,7 +70,7 @@ class DungeonMod {
         fun registerModels(e: ModelRegistryEvent) {
             ModelLoader.setCustomModelResourceLocation(FrostyRod, 0, ModelResourceLocation(FrostyRod.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(SoulEater, 0, ModelResourceLocation(SoulEater.registryName!!, "inventory"))
-            ModelLoader.setCustomModelResourceLocation(PoisonSpear, 0, ModelResourceLocation(PoisonSpear.registryName!!, "inventory"))
+            ModelLoader.setCustomModelResourceLocation(Gae_Buaifnech, 0, ModelResourceLocation(Gae_Buaifnech.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(Soul_of_Grim, 0, ModelResourceLocation(Soul_of_Grim.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(Scorpion_Tail, 0, ModelResourceLocation(Scorpion_Tail.registryName!!, "inventory"))
             Mobs.registerModels()
