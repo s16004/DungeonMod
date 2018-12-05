@@ -9,6 +9,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifier
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.init.MobEffects
 import net.minecraft.inventory.EntityEquipmentSlot
+import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemSword
 import net.minecraft.potion.PotionEffect
@@ -16,11 +17,12 @@ import net.minecraft.util.ResourceLocation
 import java.util.UUID
 
 object Gae_Buaifnech : ItemSword(ToolMaterial.IRON) {
+
     init {
         this.maxStackSize = 1
         this.unlocalizedName = "gae_buaifnech"
         this.registryName = ResourceLocation(DungeonMod.ID, "gae_buaifnech")
-
+        this.maxDamage = 800
     }
 
     //攻撃時毒付与

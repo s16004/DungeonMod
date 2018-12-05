@@ -15,8 +15,12 @@ import net.minecraft.init.Items
 import net.minecraft.init.SoundEvents
 import net.minecraft.item.ItemStack
 import net.minecraft.inventory.EntityEquipmentSlot
+import net.minecraft.network.datasync.DataSerializers
+import net.minecraft.network.datasync.EntityDataManager
 import net.minecraft.util.math.MathHelper
 import net.minecraft.world.DifficultyInstance
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
 
 
 class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
