@@ -1,20 +1,14 @@
-package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob
+package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.model
 
 import net.minecraft.client.model.ModelBiped
 import net.minecraft.entity.Entity
-import net.minecraft.entity.EntityLivingBase
-import net.minecraft.entity.monster.AbstractSkeleton
-import net.minecraft.init.Items
-import net.minecraft.util.EnumHand
-import net.minecraft.util.EnumHandSide
 import net.minecraft.util.math.MathHelper
 import kotlin.math.PI
 
-class ModelMummyArcher(modelSize: Float, p_i1168_2: Boolean)
+class ModelImhotep(modelSize: Float, p_i1168_2: Boolean)
     : ModelBiped(modelSize, 0.0f, 64, if (p_i1168_2) 32 else 64) {
 
     constructor() : this(0.0f, false)
-
     override fun setRotationAngles(limbSwing: Float, limbSwingAmount: Float, ageInTicks: Float, netHeadYaw: Float, headPitch: Float, scaleFactor: Float, entityIn: Entity) {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn)
         val f = MathHelper.sin(swingProgress * PI.toFloat())

@@ -1,9 +1,9 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "#",
-    "w",
-    "w"
+    "  #",
+    " o ",
+    "w  "
   ],
   "key": {
     "#": {
@@ -13,9 +13,13 @@
     "w": {
       "item": "minecraft:iron_ingot",
       "data": 0
+    },
+    "o": {
+      "item": "dungeonmod:soul_of_grim",
+      "data": 0
     }
   },
   "result": {
-    "item": "dungeonmod:poisonspear"
+    "item": "dungeonmod:gae_buaifnech"
   }
 }

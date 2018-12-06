@@ -75,7 +75,7 @@ class EntityScorpion(worldIn: World) : EntityMob(worldIn) {
     }
 
     override fun getEyeHeight(): Float {
-        return 0.7f
+        return 0.6f
     }
 
     public override fun getLootTable(): ResourceLocation? {

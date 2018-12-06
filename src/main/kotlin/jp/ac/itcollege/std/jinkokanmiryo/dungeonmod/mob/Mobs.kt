@@ -1,6 +1,7 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob
 
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.entity.RenderImhotep
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.entity.RenderMummy
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.entity.RenderMummyArcher
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.entity.RenderScorpion
@@ -35,6 +36,18 @@ object Mobs {
                 .build()
     }
 
+    private fun createEntry2(clazz: Class<out EntityLiving>, name: String, factory: (World) -> EntityLiving,
+                            eggBackground: Int, eggSpot: Int): EntityEntry {
+        return EntityEntryBuilder.create<EntityLiving>()
+                .entity(clazz)
+                .id(ResourceLocation("${DungeonMod.ID}:$name"), id++)
+                .name(name)
+                .factory(factory)
+                .egg(eggBackground, eggSpot)
+                .tracker(80, 3, true)
+                .build()
+    }
+
     /**
      * Mobの情報登録
      * SubscribeEventのRegistryEvent.Register<EntityEntry>で呼び出す
@@ -42,7 +55,8 @@ object Mobs {
     fun registerMobs(registry: IForgeRegistry<EntityEntry>) {
         registry.register(createEntry(EntityMummy::class.java, "mummy", ::EntityMummy, 0xffFFff, 0xffFFff))
         registry.register((createEntry(EntityMummyArcher::class.java, "mummy_archer",::EntityMummyArcher,0xffFFff, 0xffFFff)))
-        registry.register(createEntry(EntityScorpion::class.java, "scorpion",::EntityScorpion,0xffFFff, 0xffFFff ))
+        registry.register(createEntry(EntityScorpion::class.java, "scorpion",::EntityScorpion,0xffFFff, 0xffFFff))
+        registry.register(createEntry2(EntityImhotep::class.java, "imhotep",::EntityImhotep,0xffff00, 0xffd700	))
     }
 
     /**
@@ -58,6 +72,9 @@ object Mobs {
         }
         RenderingRegistry.registerEntityRenderingHandler(EntityScorpion::class.java) {
             RenderScorpion(it)
+        }
+        RenderingRegistry.registerEntityRenderingHandler(EntityImhotep::class.java) {
+            RenderImhotep(it)
         }
     }
 }
