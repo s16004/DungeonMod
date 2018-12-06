@@ -3,9 +3,14 @@ import com.google.common.collect.HashMultimap
 import com.google.common.collect.Multimap
 import com.ibm.icu.util.ULocale.getDisplayName
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod.Companion.osareBlock
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod.Companion.pyramidBlock
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.DamageBlock
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.OsareBlock
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.PyramidBlock
+import net.minecraft.advancements.critereon.ItemDurabilityTrigger
 import net.minecraft.block.material.Material
-import net.minecraft.entity.SharedMonsterAttributes
-import net.minecraft.entity.ai.attributes.AttributeModifier
+import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.entity.player.EntityPlayerMP
 import net.minecraft.init.Blocks
@@ -22,11 +27,9 @@ import net.minecraft.world.WorldServer
 import net.minecraft.world.BossInfoServer
 
 
-
-object FrostyRod : ItemPickaxe(ToolMaterial.GOLD)
-{
-    init
-    {
+object FrostyRod : ItemPickaxe(ToolMaterial.GOLD) {
+    init {
+        this.maxDamage = 10
         this.maxStackSize = 1
         this.unlocalizedName = "frostyrod"
         this.registryName = ResourceLocation(DungeonMod.ID, "FrostyRod")
@@ -35,40 +38,34 @@ object FrostyRod : ItemPickaxe(ToolMaterial.GOLD)
     override fun onItemUse(player: EntityPlayer?, worldIn: World?, pos: BlockPos?, hand: EnumHand?, facing: EnumFacing?, hitX: Float, hitY: Float, hitZ: Float): EnumActionResult {
 
         worldIn?.let { w ->
-            if(!w.isRemote && pos != null)
-            {
+            if (!w.isRemote && pos != null) {
                 val b = w.getBlockState(pos).block
-                if(b == Blocks.TALLGRASS || b == Blocks.DIRT || b == Blocks.STONE || b == Blocks.GRASS) player?.let { freeze(it as EntityPlayerMP, w as WorldServer, pos) }
+                if (b == PyramidBlock) player?.let { freeze(it as EntityPlayerMP, w as WorldServer, pos) }
+
             }
+
         }
 
         return EnumActionResult.SUCCESS
     }
 
-    private const val CostExp = 1
-    private fun freeze(player: EntityPlayerMP, w: WorldServer, pos: BlockPos)
-    {
-        if(player.capabilities.isCreativeMode || player.experienceLevel >= CostExp)
-        {
-            if(!player.capabilities.isCreativeMode) player.addExperienceLevel(-CostExp)
-            w.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, true,
-                    pos.x + 0.5, pos.y + 0.5, pos.z + 0.5, 20, 0.0, 0.0, 0.0, 0.1)
-            w.setBlockState(pos, Blocks.ICE.defaultState, 3)
+
+    override fun getContainerItem(item: ItemStack?): ItemStack? {
+        if (item != null && item.item === this) {
+            item.itemDamage = item.itemDamage + 1
         }
+        return item
     }
 
-    //攻撃力とか速度とか
-    override fun getAttributeModifiers(slot: EntityEquipmentSlot, stack: ItemStack): Multimap<String, AttributeModifier> {
-        val multimap = HashMultimap.create<String, AttributeModifier>()
 
-        if (slot == EntityEquipmentSlot.MAINHAND) {
-            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.name,
-                    AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier",8.0,0))
 
-            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.name,
-                    AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -2.6, 0))
-        }
 
-        return multimap
+    private fun freeze(player: EntityPlayerMP, w: WorldServer, pos: BlockPos) {
+
+
+        w.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, true,
+                pos.x + 0.5, pos.y + 0.5, pos.z + 0.5, 20, 0.0, 0.0, 0.0, 0.1)
+        w.setBlockState(pos, Blocks.SNOW.defaultState, 3)
     }
-}
+
+
