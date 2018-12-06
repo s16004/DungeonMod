@@ -1,6 +1,5 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob
 
-
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityLivingBase

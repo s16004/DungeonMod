@@ -1,4 +1,7 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item
+import com.google.common.collect.HashMultimap
+import com.google.common.collect.Multimap
+import com.ibm.icu.util.ULocale.getDisplayName
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod.Companion.osareBlock
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod.Companion.pyramidBlock
@@ -11,20 +14,24 @@ import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.entity.player.EntityPlayerMP
 import net.minecraft.init.Blocks
+import net.minecraft.inventory.EntityEquipmentSlot
 import net.minecraft.item.Item
 import net.minecraft.item.ItemPickaxe
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemSword
 import net.minecraft.util.*
 import net.minecraft.util.math.BlockPos
+import net.minecraft.world.BossInfo
 import net.minecraft.world.World
 import net.minecraft.world.WorldServer
+import net.minecraft.world.BossInfoServer
+
 
 object FrostyRod : ItemPickaxe(ToolMaterial.GOLD) {
     init {
         this.maxDamage = 10
         this.maxStackSize = 1
-        this.unlocalizedName = "rod"
+        this.unlocalizedName = "frostyrod"
         this.registryName = ResourceLocation(DungeonMod.ID, "FrostyRod")
     }
 
@@ -60,4 +67,5 @@ object FrostyRod : ItemPickaxe(ToolMaterial.GOLD) {
                 pos.x + 0.5, pos.y + 0.5, pos.z + 0.5, 20, 0.0, 0.0, 0.0, 0.1)
         w.setBlockState(pos, Blocks.SNOW.defaultState, 3)
     }
-}
+
+
