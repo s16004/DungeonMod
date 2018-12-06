@@ -3,17 +3,21 @@ package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.Multimap
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
+import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.SharedMonsterAttributes
 import net.minecraft.entity.ai.attributes.AttributeModifier
 import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.init.MobEffects
 import net.minecraft.inventory.EntityEquipmentSlot
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemSword
+import net.minecraft.potion.PotionEffect
 import net.minecraft.util.ActionResult
 import net.minecraft.util.EnumActionResult
 import net.minecraft.util.EnumHand
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
+import sun.audio.AudioPlayer.player
 
 object SoulEater : ItemSword(ToolMaterial.IRON)
 {
@@ -25,7 +29,7 @@ object SoulEater : ItemSword(ToolMaterial.IRON)
 
     }
 
-    //経験値消費でHP回復
+    /*経験値消費でHP回復
     private const val CostExp = 1
     override fun onItemRightClick(world: World, player: EntityPlayer, hand: EnumHand): ActionResult<ItemStack> {
 
@@ -37,6 +41,17 @@ object SoulEater : ItemSword(ToolMaterial.IRON)
         }
 
         return ActionResult(EnumActionResult.SUCCESS,stack)
+    }
+    */
+
+    //hitで回復
+    override fun hitEntity(stack: ItemStack, target: EntityLivingBase, attacker: EntityLivingBase): Boolean {
+
+        if (super.hitEntity(stack, target, attacker)) {
+            target.addPotionEffect(PotionEffect(MobEffects.POISON, 70, 0))
+            attacker.heal(3.0F)
+        }
+        return super.hitEntity(stack, target, attacker)
     }
 
     //攻撃力とか速度とか

@@ -1,11 +1,11 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod
 
-import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.DamageBlock
-import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.PyramidBlock
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.*
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.FrostyRod
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.Soul_of_Grim
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.*
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob.Mobs
+import net.minecraft.block.Block
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.init.Items
@@ -42,6 +42,9 @@ class DungeonMod {
         fun registerBlock(e: RegistryEvent.Register<Block>) {
             e.registry.register(PyramidBlock.setCreativeTab(ctab))
             e.registry.register(DamageBlock.setCreativeTab(ctab))
+            e.registry.register(LightBlock.setCreativeTab(ctab))
+            e.registry.register(OsareBlock.setCreativeTab(ctab))
+
         }
 
         @SubscribeEvent
@@ -61,7 +64,11 @@ class DungeonMod {
         }
 
         var pyramidBlock: Block? = null
-        val damageBlock: Block? = null
+        var damageBlock: Block? = null
+        var lightBlock: Block? = null
+        var osareBlock: Block? = null
+
+
 
         // 各種描画関連の登録
         @SubscribeEvent
@@ -74,12 +81,21 @@ class DungeonMod {
             ModelLoader.setCustomModelResourceLocation(Soul_of_Grim, 0, ModelResourceLocation(Soul_of_Grim.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(Scorpion_Tail, 0, ModelResourceLocation(Scorpion_Tail.registryName!!, "inventory"))
             Mobs.registerModels()
+
+
             //ブロック
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(pyramidBlock), 0,
                     net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:pyramid_block_item_model", "inventory"))
 
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(damageBlock), 0,
                     net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:damage_block_item_model", "inventory"))
+
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(lightBlock), 0,
+                    net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:light_block_item_model", "inventory"))
+
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(osareBlock), 0,
+                    net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:osare_block_item_model", "inventory"))
+
 
         }
 

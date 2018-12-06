@@ -42,7 +42,7 @@ object PyramidBlock: Block(Material.ROCK) {
         //破壊耐性
         this.setBlockUnbreakable()
 
-        this.setSoundType(SoundType.SLIME)
+        this.setSoundType(SoundType.STONE)
 
         this.unlocalizedName = "pyramid_block"
         this.registryName = ResourceLocation(DungeonMod.ID, "pyramid_block")
@@ -66,8 +66,5 @@ object PyramidBlock: Block(Material.ROCK) {
     fun registerBlocks(registry: IForgeRegistry<Block>) {
         registry.register(PyramidBlock)
     }
-
-
-
 
 }

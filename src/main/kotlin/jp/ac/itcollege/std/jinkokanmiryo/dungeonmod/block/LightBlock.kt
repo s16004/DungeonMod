@@ -21,23 +21,17 @@ import net.minecraftforge.registries.IForgeRegistry
 import javax.annotation.Nullable
 import net.minecraft.util.DamageSource
 import net.minecraft.block.state.IBlockState
-import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.entity.Entity
-import net.minecraft.entity.EntityLivingBase
-import net.minecraft.init.MobEffects
 import net.minecraft.util.math.BlockPos
 import net.minecraft.pathfinding.PathNodeType
-import net.minecraft.potion.PotionEffect
 import net.minecraft.world.IBlockAccess
 import net.minecraft.util.EnumFacing
-import net.minecraft.world.EnumDifficulty
 
 
-object DamageBlock: Block(Material.ROCK) {
+object LightBlock: Block(Material.ROCK) {
     init {
         // クリエイティブタブ
         this.setCreativeTab(CreativeTabs.DECORATIONS)
-
         // 採掘したときの固さ。大きいほど採掘が遅い
         this.setHardness(3.0f)
         // 爆発耐性
@@ -45,15 +39,18 @@ object DamageBlock: Block(Material.ROCK) {
         // デフォルトのStateを設定
         this.setDefaultState(this.blockState.getBaseState())
 
-        this.setSoundType(SoundType.STONE)
-
         //破壊耐性
         this.setBlockUnbreakable()
 
-        this.unlocalizedName = "damage_block"
-        this.registryName = ResourceLocation(DungeonMod.ID, "damage_block")
+        //ブロックの明るさ
+        this.setLightLevel(1.0F)
 
-        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
+        this.setSoundType(SoundType.STONE)
+
+        this.unlocalizedName = "light_block"
+        this.registryName = ResourceLocation(DungeonMod.ID, "light_block")
+
+        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
     }
 
 
@@ -65,25 +62,12 @@ object DamageBlock: Block(Material.ROCK) {
     }
 
 
-
+    // @SideOnly(Side.CLIENT)
+    //fun addInformation(stack: ItemStack, @Nullable world: World, tooltip: List<String>, advanced: ITooltipFlag) {
+    //}
 
     fun registerBlocks(registry: IForgeRegistry<Block>) {
-        registry.register(DamageBlock)
+        registry.register(LightBlock)
     }
-
-    override fun onEntityCollidedWithBlock(worldIn: World, pos: BlockPos, state: IBlockState, entityIn: Entity) {
-        entityIn.attackEntityFrom(DamageSource.MAGIC, 1.0f)
-    }
-
-
-
-    override fun onEntityWalk(worldIn: World, pos: BlockPos, entityIn: Entity) {
-        if (!entityIn.isImmuneToFire && entityIn is EntityLivingBase && !EnchantmentHelper.hasFrostWalkerEnchantment(entityIn)) {
-            entityIn.attackEntityFrom(DamageSource.MAGIC, 1.0f) //DamageSource.MAGIC
-        }
-
-        super.onEntityWalk(worldIn, pos, entityIn)
-    }
-
 
 }
