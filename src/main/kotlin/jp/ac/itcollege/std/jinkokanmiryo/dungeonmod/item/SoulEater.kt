@@ -48,7 +48,6 @@ object SoulEater : ItemSword(ToolMaterial.IRON)
     override fun hitEntity(stack: ItemStack, target: EntityLivingBase, attacker: EntityLivingBase): Boolean {
 
         if (super.hitEntity(stack, target, attacker)) {
-            target.addPotionEffect(PotionEffect(MobEffects.POISON, 70, 0))
             attacker.heal(3.0F)
         }
         return super.hitEntity(stack, target, attacker)
@@ -60,13 +59,10 @@ object SoulEater : ItemSword(ToolMaterial.IRON)
 
         if (slot == EntityEquipmentSlot.MAINHAND) {
             multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.name,
-                    AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier",7.0,0))
+                    AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier",8.0,0))
 
             multimap.put(SharedMonsterAttributes.ATTACK_SPEED.name,
                     AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -2.6, 0))
-
-
-
 
         }
 

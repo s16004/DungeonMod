@@ -31,6 +31,7 @@ object Gae_Buaifnech : ItemSword(ToolMaterial.IRON) {
         if (super.hitEntity(stack, target, attacker)) {
             target.addPotionEffect(PotionEffect(MobEffects.POISON, 70, 0))
         }
+
         return super.hitEntity(stack, target, attacker)
     }
 

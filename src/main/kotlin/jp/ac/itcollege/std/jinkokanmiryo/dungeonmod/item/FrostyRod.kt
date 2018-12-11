@@ -1,30 +1,16 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item
-import com.google.common.collect.HashMultimap
-import com.google.common.collect.Multimap
-import com.ibm.icu.util.ULocale.getDisplayName
+
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
-import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod.Companion.osareBlock
-import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod.Companion.pyramidBlock
-import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.DamageBlock
-import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.OsareBlock
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.PyramidBlock
-import net.minecraft.advancements.critereon.ItemDurabilityTrigger
-import net.minecraft.block.material.Material
-import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.entity.player.EntityPlayerMP
 import net.minecraft.init.Blocks
-import net.minecraft.inventory.EntityEquipmentSlot
-import net.minecraft.item.Item
 import net.minecraft.item.ItemPickaxe
 import net.minecraft.item.ItemStack
-import net.minecraft.item.ItemSword
 import net.minecraft.util.*
 import net.minecraft.util.math.BlockPos
-import net.minecraft.world.BossInfo
 import net.minecraft.world.World
 import net.minecraft.world.WorldServer
-import net.minecraft.world.BossInfoServer
 
 
 object FrostyRod : ItemPickaxe(ToolMaterial.GOLD) {
@@ -36,19 +22,15 @@ object FrostyRod : ItemPickaxe(ToolMaterial.GOLD) {
     }
 
     override fun onItemUse(player: EntityPlayer?, worldIn: World?, pos: BlockPos?, hand: EnumHand?, facing: EnumFacing?, hitX: Float, hitY: Float, hitZ: Float): EnumActionResult {
-
         worldIn?.let { w ->
             if (!w.isRemote && pos != null) {
                 val b = w.getBlockState(pos).block
                 if (b == PyramidBlock) player?.let { freeze(it as EntityPlayerMP, w as WorldServer, pos) }
-
             }
-
         }
 
         return EnumActionResult.SUCCESS
     }
-
 
     override fun getContainerItem(item: ItemStack?): ItemStack? {
         if (item != null && item.item === this) {
@@ -57,15 +39,11 @@ object FrostyRod : ItemPickaxe(ToolMaterial.GOLD) {
         return item
     }
 
-
-
-
     private fun freeze(player: EntityPlayerMP, w: WorldServer, pos: BlockPos) {
-
-
         w.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, true,
                 pos.x + 0.5, pos.y + 0.5, pos.z + 0.5, 20, 0.0, 0.0, 0.0, 0.1)
         w.setBlockState(pos, Blocks.SNOW.defaultState, 3)
     }
+}
 
 

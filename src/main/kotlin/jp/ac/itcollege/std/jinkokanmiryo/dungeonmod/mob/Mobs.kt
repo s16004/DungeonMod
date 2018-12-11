@@ -1,10 +1,7 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob
 
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
-import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.entity.RenderImhotep
-import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.entity.RenderMummy
-import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.entity.RenderMummyArcher
-import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.entity.RenderScorpion
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.entity.*
 import net.minecraft.entity.EntityLiving
 import net.minecraft.entity.EnumCreatureType
 import net.minecraft.init.Biomes
@@ -56,7 +53,8 @@ object Mobs {
         registry.register(createEntry(EntityMummy::class.java, "mummy", ::EntityMummy, 0xffFFff, 0xffFFff))
         registry.register((createEntry(EntityMummyArcher::class.java, "mummy_archer",::EntityMummyArcher,0xffFFff, 0xffFFff)))
         registry.register(createEntry(EntityScorpion::class.java, "scorpion",::EntityScorpion,0xffFFff, 0xffFFff))
-        registry.register(createEntry2(EntityImhotep::class.java, "imhotep",::EntityImhotep,0xffff00, 0xffd700	))
+        registry.register(createEntry2(EntityImhotep::class.java, "imhotep",::EntityImhotep,0x0000ff, 0x0000cd	))
+        registry.register(createEntry2(EntityAnkhesenamen::class.java, "ankhesenamen",::EntityAnkhesenamen,0xffff00, 0xffd700	))
     }
 
     /**
@@ -75,6 +73,9 @@ object Mobs {
         }
         RenderingRegistry.registerEntityRenderingHandler(EntityImhotep::class.java) {
             RenderImhotep(it)
+        }
+        RenderingRegistry.registerEntityRenderingHandler(EntityAnkhesenamen::class.java) {
+            RenderAnkhesenamen(it)
         }
     }
 }

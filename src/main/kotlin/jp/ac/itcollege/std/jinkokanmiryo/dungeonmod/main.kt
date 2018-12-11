@@ -55,6 +55,7 @@ class DungeonMod {
             e.registry.register(Gae_Buaifnech.setCreativeTab(ctab))
             e.registry.register(Soul_of_Grim.setCreativeTab(ctab))
             e.registry.register(Scorpion_Tail.setCreativeTab(ctab))
+            e.registry.register(Failnaught.setCreativeTab(ctab))
         }
 
         @SubscribeEvent
@@ -68,8 +69,6 @@ class DungeonMod {
         var lightBlock: Block? = null
         var osareBlock: Block? = null
 
-
-
         // 各種描画関連の登録
         @SubscribeEvent
         @JvmStatic
@@ -80,6 +79,7 @@ class DungeonMod {
             ModelLoader.setCustomModelResourceLocation(Gae_Buaifnech, 0, ModelResourceLocation(Gae_Buaifnech.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(Soul_of_Grim, 0, ModelResourceLocation(Soul_of_Grim.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(Scorpion_Tail, 0, ModelResourceLocation(Scorpion_Tail.registryName!!, "inventory"))
+            ModelLoader.setCustomModelResourceLocation(Failnaught, 0, ModelResourceLocation(Failnaught.registryName!!, "inventory"))
             Mobs.registerModels()
 
 
