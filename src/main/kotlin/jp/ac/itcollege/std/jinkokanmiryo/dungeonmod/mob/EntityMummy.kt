@@ -1,19 +1,12 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob
 
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
-import net.minecraft.entity.Entity
-import net.minecraft.entity.EntityLivingBase
-import net.minecraft.entity.EnumCreatureType
 import net.minecraft.entity.SharedMonsterAttributes
 import net.minecraft.entity.ai.*
 import net.minecraft.entity.monster.EntityMob
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.init.MobEffects
-import net.minecraft.potion.PotionEffect
 import net.minecraft.util.ResourceLocation
-import net.minecraft.world.EnumDifficulty
 import net.minecraft.world.World
-import net.minecraftforge.fml.common.registry.EntityRegistry
 
 
 class EntityMummy(worldIn: World) : EntityMob(worldIn) {

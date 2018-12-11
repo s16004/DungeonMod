@@ -1,7 +1,7 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.client.model
 
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.Failnaught
-import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob.EntityAnkhesenamen
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob.EntityAnkhesenamun
 import net.minecraft.client.model.ModelBiped
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityLivingBase
@@ -9,7 +9,7 @@ import net.minecraft.util.EnumHand
 import net.minecraft.util.EnumHandSide
 import net.minecraft.util.math.MathHelper
 
-class ModelAnkhesenamen(modelSize: Float, p_i1168_2: Boolean)
+class ModelAnkhesenamun(modelSize: Float, p_i1168_2: Boolean)
     : ModelBiped(modelSize, 0.0f, 64, if (p_i1168_2) 32 else 64) {
 
     constructor() : this(0.0f, false)
@@ -18,7 +18,7 @@ class ModelAnkhesenamen(modelSize: Float, p_i1168_2: Boolean)
 
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn)
         val itemstack = (entityIn as EntityLivingBase).heldItemMainhand
-        val archer = entityIn as EntityAnkhesenamen
+        val archer = entityIn as EntityAnkhesenamun
 
         if (archer.isSwingingArms() && (itemstack.isEmpty || itemstack.item !== Failnaught)) {
             val f = MathHelper.sin(this.swingProgress * Math.PI.toFloat())
@@ -43,7 +43,7 @@ class ModelAnkhesenamen(modelSize: Float, p_i1168_2: Boolean)
         this.leftArmPose = ModelBiped.ArmPose.EMPTY
         val itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND)
 
-        if (itemstack.item === Failnaught && (entitylivingbaseIn as EntityAnkhesenamen).isSwingingArms()) {
+        if (itemstack.item === Failnaught && (entitylivingbaseIn as EntityAnkhesenamun).isSwingingArms()) {
             if (entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT) {
                 this.rightArmPose = ModelBiped.ArmPose.BOW_AND_ARROW
             } else {

@@ -6,19 +6,12 @@ import net.minecraft.entity.IEntityLivingData
 import net.minecraft.entity.SharedMonsterAttributes
 import net.minecraft.entity.ai.*
 import net.minecraft.entity.monster.EntityMob
-import net.minecraft.entity.monster.EntityZombie
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.entity.player.EntityPlayerMP
-import net.minecraft.init.Items
 import net.minecraft.inventory.EntityEquipmentSlot
 import net.minecraft.item.ItemStack
-import net.minecraft.network.datasync.DataSerializers
-import net.minecraft.network.datasync.EntityDataManager
 import net.minecraft.util.ResourceLocation
-import net.minecraft.world.BossInfo
 import net.minecraft.world.DifficultyInstance
 import net.minecraft.world.World
-import net.minecraft.world.BossInfoServer
 
 class EntityImhotep(worldIn: World) : EntityMob(worldIn) {
 
@@ -62,31 +55,32 @@ class EntityImhotep(worldIn: World) : EntityMob(worldIn) {
         setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemStack(FrostyRod))
         setItemStackToSlot(EntityEquipmentSlot.OFFHAND, ItemStack(FrostyRod))
     }
-/*
-    override fun updateAITasks() {
-        this.bossInfo.percent = this.health / this.maxHealth
 
-    }
+    /*
+        override fun updateAITasks() {
+            this.bossInfo.percent = this.health / this.maxHealth
 
-    override fun setCustomNameTag(name: String) {
-        super.setCustomNameTag(name)
-        this.bossInfo.name = this.displayName
-    }
+        }
 
-    override fun addTrackingPlayer(player: EntityPlayerMP) {
-        super.addTrackingPlayer(player)
-        this.bossInfo.addPlayer(player)
-    }
+        override fun setCustomNameTag(name: String) {
+            super.setCustomNameTag(name)
+            this.bossInfo.name = this.displayName
+        }
 
-    override fun removeTrackingPlayer(player: EntityPlayerMP) {
-        super.removeTrackingPlayer(player)
-        this.bossInfo.removePlayer(player)
-    }
+        override fun addTrackingPlayer(player: EntityPlayerMP) {
+            super.addTrackingPlayer(player)
+            this.bossInfo.addPlayer(player)
+        }
 
-    fun setArmsRaised(armsRaised: Boolean) {
-        this.getDataManager().set(ARMS_RAISED, java.lang.Boolean.valueOf(armsRaised))
-    }
-*/
+        override fun removeTrackingPlayer(player: EntityPlayerMP) {
+            super.removeTrackingPlayer(player)
+            this.bossInfo.removePlayer(player)
+        }
+
+        fun setArmsRaised(armsRaised: Boolean) {
+            this.getDataManager().set(ARMS_RAISED, java.lang.Boolean.valueOf(armsRaised))
+        }
+    */
     override fun getExperiencePoints(player: EntityPlayer): Int {
         experienceValue = 10000
         return super.getExperiencePoints(player)

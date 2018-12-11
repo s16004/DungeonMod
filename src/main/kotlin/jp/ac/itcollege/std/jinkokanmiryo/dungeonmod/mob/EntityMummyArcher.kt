@@ -3,7 +3,6 @@ package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import net.minecraft.entity.*
 import net.minecraft.entity.ai.*
-import net.minecraft.entity.monster.AbstractSkeleton
 import net.minecraft.entity.monster.EntityMob
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.entity.projectile.EntityArrow

@@ -4,18 +4,15 @@ import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.Failnaught
 import net.minecraft.entity.*
 import net.minecraft.entity.ai.*
-import net.minecraft.entity.monster.AbstractSkeleton
 import net.minecraft.entity.monster.EntityMob
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.entity.projectile.EntityArrow
 import net.minecraft.entity.projectile.EntityTippedArrow
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
-import net.minecraft.init.Items
 import net.minecraft.init.SoundEvents
 import net.minecraft.item.ItemStack
 import net.minecraft.inventory.EntityEquipmentSlot
-import net.minecraft.item.Item
 import net.minecraft.network.datasync.DataSerializers
 import net.minecraft.network.datasync.EntityDataManager
 import net.minecraft.util.math.MathHelper
@@ -23,13 +20,14 @@ import net.minecraft.world.DifficultyInstance
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-class EntityAnkhesenamen(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
+class EntityAnkhesenamun(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
 
     val LOOT_TABLE = ResourceLocation(DungeonMod.ID, "entities/ankhesenamen")
 
     init {
         setSize(0.6f, 1.95f)
     }
+
     override fun entityInit() {
         super.entityInit()
         this.dataManager.register(SWINGING_ARMS, java.lang.Boolean.valueOf(false))
@@ -115,6 +113,7 @@ class EntityAnkhesenamen(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
     companion object {
         private val SWINGING_ARMS = EntityDataManager.createKey(EntityMummyArcher::class.java, DataSerializers.BOOLEAN)
     }
+
     override fun getExperiencePoints(player: EntityPlayer): Int {
         experienceValue = 7000
         return super.getExperiencePoints(player)

@@ -7,11 +7,9 @@ import net.minecraft.entity.EnumCreatureType
 import net.minecraft.init.Biomes
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
-import net.minecraft.world.biome.BiomeDesert
 import net.minecraftforge.fml.client.registry.RenderingRegistry
 import net.minecraftforge.fml.common.registry.EntityEntry
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder
-import net.minecraftforge.fml.common.registry.ForgeRegistries.BIOMES
 import net.minecraftforge.registries.IForgeRegistry
 
 object Mobs {
@@ -75,7 +73,7 @@ object Mobs {
             RenderImhotep(it)
         }
         RenderingRegistry.registerEntityRenderingHandler(EntityAnkhesenamen::class.java) {
-            RenderAnkhesenamen(it)
+            RenderAnkhesenamun(it)
         }
     }
 }

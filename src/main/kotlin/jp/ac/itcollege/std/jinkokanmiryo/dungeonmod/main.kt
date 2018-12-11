@@ -24,7 +24,6 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.common.ForgeVersion.MOD_ID
 
 
-
 @Mod(modid = DungeonMod.ID, name = DungeonMod.Name, version = DungeonMod.Version, modLanguage = "kotlin", modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter")
 @Mod.EventBusSubscriber
 class DungeonMod {

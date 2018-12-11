@@ -13,7 +13,6 @@ import net.minecraft.stats.StatList
 import net.minecraft.util.*
 import net.minecraft.world.World
 
-
 object Failnaught : ItemBow() {
     init {
         this.maxStackSize = 1
