@@ -45,7 +45,7 @@ class EntityAnkhesenamun(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
 
     override fun applyEntityAttributes() {
         super.applyEntityAttributes()
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).baseValue = 170.0
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).baseValue = 250.0
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).baseValue = 0.26
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).baseValue = 6.0
     }
@@ -102,7 +102,6 @@ class EntityAnkhesenamun(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
 
     @SideOnly(Side.CLIENT)
     fun isSwingingArms(): Boolean {
-//        return (this.dataManager.get(SWINGING_ARMS) as Boolean)
         return (this.dataManager.get(SWINGING_ARMS) as Boolean)
     }
 

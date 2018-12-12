@@ -1,0 +1,7 @@
+{
+  "parent": "item/handheld",
+  "textures":
+  {
+    "layer0": "dungeonmod:items/soul_of_grim"
+  }
+}

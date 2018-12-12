@@ -43,13 +43,14 @@ class DungeonMod {
             e.registry.register(DamageBlock.setCreativeTab(ctab))
             e.registry.register(LightBlock.setCreativeTab(ctab))
             e.registry.register(OsareBlock.setCreativeTab(ctab))
-
         }
 
         @SubscribeEvent
         @JvmStatic
         fun registeritem(e: RegistryEvent.Register<Item>) {
             e.registry.register(FrostyRod.setCreativeTab(ctab))
+            e.registry.register(FrostyRod_Handle.setCreativeTab(ctab))
+            e.registry.register(FrostyRod_Crystal.setCreativeTab(ctab))
             e.registry.register(SoulEater.setCreativeTab(ctab))
             e.registry.register(Gae_Buaifnech.setCreativeTab(ctab))
             e.registry.register(Soul_of_Grim.setCreativeTab(ctab))
@@ -74,6 +75,8 @@ class DungeonMod {
         @SideOnly(Side.CLIENT)
         fun registerModels(e: ModelRegistryEvent) {
             ModelLoader.setCustomModelResourceLocation(FrostyRod, 0, ModelResourceLocation(FrostyRod.registryName!!, "inventory"))
+            ModelLoader.setCustomModelResourceLocation(FrostyRod_Handle, 0, ModelResourceLocation(FrostyRod_Handle.registryName!!, "inventory"))
+            ModelLoader.setCustomModelResourceLocation(FrostyRod_Crystal, 0, ModelResourceLocation(FrostyRod_Crystal.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(SoulEater, 0, ModelResourceLocation(SoulEater.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(Gae_Buaifnech, 0, ModelResourceLocation(Gae_Buaifnech.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(Soul_of_Grim, 0, ModelResourceLocation(Soul_of_Grim.registryName!!, "inventory"))
@@ -94,7 +97,6 @@ class DungeonMod {
 
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(osareBlock), 0,
                     net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:osare_block_item_model", "inventory"))
-
 
         }
 

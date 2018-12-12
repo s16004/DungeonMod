@@ -101,7 +101,7 @@ object Failnaught : ItemBow() {
         }
     }
 
-    private fun findAmmo(player: EntityPlayer): ItemStack {
+   private fun findAmmo(player: EntityPlayer): ItemStack {
         if (this.isArrow(player.getHeldItem(EnumHand.OFF_HAND))) {
             return player.getHeldItem(EnumHand.OFF_HAND)
         } else if (this.isArrow(player.getHeldItem(EnumHand.MAIN_HAND))) {
@@ -117,10 +117,6 @@ object Failnaught : ItemBow() {
 
             return ItemStack.EMPTY
         }
-    }
-
-    override fun getItemUseAction(stack: ItemStack): EnumAction {
-        return EnumAction.BOW
     }
 
     override fun onItemRightClick(worldIn: World, playerIn: EntityPlayer, handIn: EnumHand): ActionResult<ItemStack> {

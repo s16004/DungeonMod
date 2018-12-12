@@ -1,12 +1,16 @@
-item.frostyrod.name=Frosty Rod
-item.souleater.name=Soul Eater
+item.frostyrod.name=Frosty_Rod
+item.souleater.name=Soul_Eater
 item.gae_buaifnech.name=Gae_Buaifnech
-item.soul_of_grim.name=Soul of Grim
-item.scorpion_tail.name=Scorpion Tail
+item.soul_of_grim.name=Soul_of_Grim
+item.scorpion_tail.name=Scorpion_Tail
 item.failnaught.name=Failnaught
-entity.mummy_archer.name=Mummy Archer
+item.frostyrod_handle.name=Frosty_Rod_Handle
+item.frostyrod_crystal
+
+entity.mummy_archer.name=Mummy_Archer
 entity.mummy.name=Mummy
 entity.scorpion.name=Scorpion
 entity.imhotep.name=Imhotep
 entity.ankhesenamun.name=Ankhesenamun
+
 block.pyramidblock.name=Pyramid Block

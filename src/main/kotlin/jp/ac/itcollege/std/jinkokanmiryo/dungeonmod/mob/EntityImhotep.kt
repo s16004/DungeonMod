@@ -45,7 +45,7 @@ class EntityImhotep(worldIn: World) : EntityMob(worldIn) {
 
     override fun applyEntityAttributes() {
         super.applyEntityAttributes()
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).baseValue = 250.0
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).baseValue = 350.0
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).baseValue = 0.3
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).baseValue = 8.0
     }

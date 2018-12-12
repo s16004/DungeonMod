@@ -31,6 +31,9 @@ object Mobs {
                 .build()
     }
 
+    /**
+     * 自然沸きしないmobの登録
+     */
     private fun createEntry2(clazz: Class<out EntityLiving>, name: String, factory: (World) -> EntityLiving,
                             eggBackground: Int, eggSpot: Int): EntityEntry {
         return EntityEntryBuilder.create<EntityLiving>()
@@ -52,7 +55,7 @@ object Mobs {
         registry.register((createEntry(EntityMummyArcher::class.java, "mummy_archer",::EntityMummyArcher,0xffFFff, 0xffFFff)))
         registry.register(createEntry(EntityScorpion::class.java, "scorpion",::EntityScorpion,0xffFFff, 0xffFFff))
         registry.register(createEntry2(EntityImhotep::class.java, "imhotep",::EntityImhotep,0x0000ff, 0x0000cd	))
-        registry.register(createEntry2(EntityAnkhesenamen::class.java, "ankhesenamen",::EntityAnkhesenamen,0xffff00, 0xffd700	))
+        registry.register(createEntry2(EntityAnkhesenamun::class.java, "ankhesenamun",::EntityAnkhesenamun,0xffff00, 0xffd700	))
     }
 
     /**
@@ -72,7 +75,7 @@ object Mobs {
         RenderingRegistry.registerEntityRenderingHandler(EntityImhotep::class.java) {
             RenderImhotep(it)
         }
-        RenderingRegistry.registerEntityRenderingHandler(EntityAnkhesenamen::class.java) {
+        RenderingRegistry.registerEntityRenderingHandler(EntityAnkhesenamun::class.java) {
             RenderAnkhesenamun(it)
         }
     }
