@@ -1,16 +1,19 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob
 
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
-import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.FrostyRod
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.Vanargand
 import net.minecraft.entity.IEntityLivingData
 import net.minecraft.entity.SharedMonsterAttributes
 import net.minecraft.entity.ai.*
 import net.minecraft.entity.monster.EntityMob
 import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.init.MobEffects
 import net.minecraft.inventory.EntityEquipmentSlot
 import net.minecraft.item.ItemStack
+import net.minecraft.potion.PotionEffect
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.DifficultyInstance
+import net.minecraft.world.EnumDifficulty
 import net.minecraft.world.World
 
 class EntityImhotep(worldIn: World) : EntityMob(worldIn) {
@@ -33,6 +36,23 @@ class EntityImhotep(worldIn: World) : EntityMob(worldIn) {
         return livingData
     }
 
+    override fun onLivingUpdate() {
+        if(this.health <= this.maxHealth / 2) {
+            var i = 0
+
+            if (this.world.difficulty == EnumDifficulty.NORMAL) {
+                i = 7
+            } else if (this.world.difficulty == EnumDifficulty.HARD) {
+                i = 15
+            }
+
+            if (i > 0) {
+                this.addPotionEffect(PotionEffect(MobEffects.STRENGTH, i * 60, 0))
+            }
+        }
+        super.onLivingUpdate()
+    }
+
     override fun initEntityAI() {
         this.tasks.addTask(0, EntityAISwimming(this))
         this.tasks.addTask(3, EntityAIAttackMelee(this, 1.0, false))
@@ -48,12 +68,13 @@ class EntityImhotep(worldIn: World) : EntityMob(worldIn) {
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).baseValue = 350.0
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).baseValue = 0.3
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).baseValue = 8.0
+        getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).baseValue = 0.3
     }
 
     override fun setEquipmentBasedOnDifficulty(difficulty: DifficultyInstance) {
         super.setEquipmentBasedOnDifficulty(difficulty)
-        setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemStack(FrostyRod))
-        setItemStackToSlot(EntityEquipmentSlot.OFFHAND, ItemStack(FrostyRod))
+        setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemStack(Vanargand))
+        //setItemStackToSlot(EntityEquipmentSlot.OFFHAND, ItemStack(Vanargand))
     }
 
     /*

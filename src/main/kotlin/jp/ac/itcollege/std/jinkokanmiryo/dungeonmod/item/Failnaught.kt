@@ -12,6 +12,9 @@ import net.minecraft.item.*
 import net.minecraft.stats.StatList
 import net.minecraft.util.*
 import net.minecraft.world.World
+import net.minecraftforge.common.MinecraftForge
+import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.common.event.FMLConstructionEvent
 
 object Failnaught : ItemBow() {
     init {
@@ -134,4 +137,8 @@ object Failnaught : ItemBow() {
         }
     }
 
+    @Mod.EventHandler
+    fun construction(event: FMLConstructionEvent) {
+        MinecraftForge.EVENT_BUS.register(this)
+    }
 }

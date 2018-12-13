@@ -2,12 +2,14 @@ package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob
 
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.Failnaught
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob.ai.DMEntityAIAttackRangedBow
 import net.minecraft.entity.*
 import net.minecraft.entity.ai.*
 import net.minecraft.entity.monster.EntityMob
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.entity.projectile.EntityArrow
 import net.minecraft.entity.projectile.EntityTippedArrow
+import net.minecraft.init.MobEffects
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraft.init.SoundEvents
@@ -15,14 +17,16 @@ import net.minecraft.item.ItemStack
 import net.minecraft.inventory.EntityEquipmentSlot
 import net.minecraft.network.datasync.DataSerializers
 import net.minecraft.network.datasync.EntityDataManager
+import net.minecraft.potion.PotionEffect
 import net.minecraft.util.math.MathHelper
 import net.minecraft.world.DifficultyInstance
+import net.minecraft.world.EnumDifficulty
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
 class EntityAnkhesenamun(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
 
-    val LOOT_TABLE = ResourceLocation(DungeonMod.ID, "entities/ankhesenamen")
+    val LOOT_TABLE = ResourceLocation(DungeonMod.ID, "entities/ankhesenamun")
 
     init {
         setSize(0.6f, 1.95f)
@@ -47,7 +51,7 @@ class EntityAnkhesenamun(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
         super.applyEntityAttributes()
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).baseValue = 250.0
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).baseValue = 0.26
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).baseValue = 6.0
+        getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).baseValue = 0.1
     }
 
     override fun setItemStackToSlot(slotIn: EntityEquipmentSlot, stack: ItemStack) {
@@ -71,13 +75,30 @@ class EntityAnkhesenamun(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
         return livingdata
     }
 
+    override fun onLivingUpdate() {
+        if(this.health <= this.maxHealth / 2) {
+            var i = 0
+
+            if (this.world.difficulty == EnumDifficulty.NORMAL) {
+                i = 7
+            } else if (this.world.difficulty == EnumDifficulty.HARD) {
+                i = 15
+            }
+
+            if (i > 0) {
+                this.addPotionEffect(PotionEffect(MobEffects.RESISTANCE, i * 60, 0))
+            }
+        }
+        super.onLivingUpdate()
+    }
+
     private fun setCombatTask() {
         tasks.removeTask(EntityAIAttackMelee(this, 1.0, true))
-        tasks.removeTask(EntityAIAttackRangedBow(this, 2.0, 20, 15.0F))
+        tasks.removeTask(DMEntityAIAttackRangedBow(this, 2.0, 20, 15.0F))
 
         val itemstack = heldItemMainhand
         if (itemstack.item === Failnaught) {
-            tasks.addTask(2, EntityAIAttackRangedBow(this, 2.0, 20, 15.0F))
+            tasks.addTask(2, DMEntityAIAttackRangedBow(this, 2.0, 20, 15.0F))
         } else {
             tasks.addTask(2, EntityAIAttackMelee(this, 1.0, true))
         }

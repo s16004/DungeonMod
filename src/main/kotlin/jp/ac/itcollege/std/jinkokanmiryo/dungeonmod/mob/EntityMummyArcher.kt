@@ -33,6 +33,7 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
         this.dataManager.register(SWINGING_ARMS, java.lang.Boolean.valueOf(false))
     }
 
+
     override fun initEntityAI() {
         this.tasks.addTask(0, EntityAISwimming(this))
         this.tasks.addTask(3, EntityAIWander(this, 1.0))
