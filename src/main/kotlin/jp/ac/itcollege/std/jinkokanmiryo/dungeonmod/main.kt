@@ -43,6 +43,9 @@ class DungeonMod {
             e.registry.register(DamageBlock.setCreativeTab(ctab))
             e.registry.register(LightBlock.setCreativeTab(ctab))
             e.registry.register(OsareBlock.setCreativeTab(ctab))
+            e.registry.register(ShineBlock.setCreativeTab(ctab))
+            e.registry.register(BreakBlock.setCreativeTab(ctab))
+
         }
 
         @SubscribeEvent
@@ -68,6 +71,8 @@ class DungeonMod {
         var damageBlock: Block? = null
         var lightBlock: Block? = null
         var osareBlock: Block? = null
+        var shineBlock: Block? = null
+        var breakBlock: Block? = null
 
         // 各種描画関連の登録
         @SubscribeEvent
@@ -97,6 +102,13 @@ class DungeonMod {
 
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(osareBlock), 0,
                     net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:osare_block_item_model", "inventory"))
+
+
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(shineBlock), 0,
+                    net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:shine_block_item_model", "inventory"))
+
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(breakBlock), 0,
+                    net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:break_block_item_model", "inventory"))
 
         }
 

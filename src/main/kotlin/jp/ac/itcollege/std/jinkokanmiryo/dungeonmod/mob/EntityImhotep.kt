@@ -47,7 +47,9 @@ class EntityImhotep(worldIn: World) : EntityMob(worldIn) {
             }
 
             if (i > 0) {
+
                 this.addPotionEffect(PotionEffect(MobEffects.RESISTANCE, i * 60, 0))
+
             }
         }
         super.onLivingUpdate()

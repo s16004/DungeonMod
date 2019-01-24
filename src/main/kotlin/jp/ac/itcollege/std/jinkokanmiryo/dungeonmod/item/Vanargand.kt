@@ -1,6 +1,7 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item
 
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.BreakBlock
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.PyramidBlock
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.entity.player.EntityPlayerMP
@@ -13,37 +14,51 @@ import net.minecraft.world.World
 import net.minecraft.world.WorldServer
 
 
+
+//object Vanargand : ItemPickaxe(ToolMaterial.GOLD){
 object Vanargand : ItemPickaxe(ToolMaterial.GOLD) {
     init {
-        this.maxDamage = 10
+        this.maxDamage = 1
         this.maxStackSize = 1
         this.unlocalizedName = "vanargand"
         this.registryName = ResourceLocation(DungeonMod.ID, "Vanargand")
     }
 
-    override fun onItemUse(player: EntityPlayer?, worldIn: World?, pos: BlockPos?, hand: EnumHand?, facing: EnumFacing?, hitX: Float, hitY: Float, hitZ: Float): EnumActionResult {
+    //置き換えられる
+    override fun onItemUse(player: EntityPlayer, worldIn: World, pos: BlockPos, hand: EnumHand, facing: EnumFacing, hitX: Float, hitY: Float, hitZ: Float): EnumActionResult {
+
+
         worldIn?.let { w ->
-            if (!w.isRemote && pos != null) {
-                val b = w.getBlockState(pos).block
-                if (b == PyramidBlock) player?.let { freeze(it as EntityPlayerMP, w as WorldServer, pos) }
+            if (worldIn.isRemote) {
+                val target = worldIn.getBlockState(pos).block
+                if (target != DungeonMod.breakBlock) {
+                    return EnumActionResult.SUCCESS
+                }
             }
+                for (ix in -2..2) {
+                    for (iz in -2..2) {
+                        for (iy in -1..1) {
+                            worldIn.setBlockToAir(pos.add(ix, iy, iz))
+                        }
+                    }
+                }
+
         }
+
 
         return EnumActionResult.SUCCESS
     }
 
-    override fun getContainerItem(item: ItemStack?): ItemStack? {
-        if (item != null && item.item === this) {
-            item.itemDamage = item.itemDamage + 1
-        }
-        return item
-    }
-
+    //置き換えるブロックと爆発威力
+    /*
     private fun freeze(player: EntityPlayerMP, w: WorldServer, pos: BlockPos) {
-        w.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, true,
+
+
+        w.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, true,
                 pos.x + 0.5, pos.y + 0.5, pos.z + 0.5, 20, 0.0, 0.0, 0.0, 0.1)
-        w.setBlockState(pos, Blocks.SNOW.defaultState, 3)
-    }
+        w.setBlockState(pos, Blocks.AIR.defaultState, 3)
+
+    }*/
+
+
 }
-
-

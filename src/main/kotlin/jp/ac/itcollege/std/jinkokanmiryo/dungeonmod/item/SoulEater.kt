@@ -6,9 +6,11 @@ import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.SharedMonsterAttributes
 import net.minecraft.entity.ai.attributes.AttributeModifier
+import net.minecraft.init.MobEffects
 import net.minecraft.inventory.EntityEquipmentSlot
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemSword
+import net.minecraft.potion.PotionEffect
 import net.minecraft.util.ResourceLocation
 
 object SoulEater : ItemSword(ToolMaterial.IRON) {
@@ -48,10 +50,11 @@ object SoulEater : ItemSword(ToolMaterial.IRON) {
 
         if (slot == EntityEquipmentSlot.MAINHAND) {
             multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.name,
-                    AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 8.0, 0))
+                    AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 7.0, 0))
 
             multimap.put(SharedMonsterAttributes.ATTACK_SPEED.name,
                     AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -2.6, 0))
+
         }
         return multimap
     }
