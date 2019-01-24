@@ -7,17 +7,17 @@
         "type": "item",
         "name": "dungeonmod:Soul_of_Grim",
         "functions": [
-          { "function": "looting_enchant", "count": { "min": 3, "max": 5 }},
           { "function": "set_count", "count": { "min": 2, "max": 4 } },
+          { "function": "looting_enchant", "count": { "min": 3, "max": 5 }}
         ]
       }]
     },
     {
-      "name": "FrostyRod_Handle",
+      "name": "FrostyRod_Crystal",
       "rolls": 1,
       "entries": [{
         "type": "item",
-        "name": "dungeonmod:frostyrod_handle",
+        "name": "dungeonmod:frostyrod_crystal",
         "functions": [
           { "function": "looting_enchant", "count": { "min": 1, "max": 1 } }
         ]

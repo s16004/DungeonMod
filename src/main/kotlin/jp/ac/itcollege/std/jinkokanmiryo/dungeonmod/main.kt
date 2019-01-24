@@ -24,7 +24,6 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.common.ForgeVersion.MOD_ID
 
 
-
 @Mod(modid = DungeonMod.ID, name = DungeonMod.Name, version = DungeonMod.Version, modLanguage = "kotlin", modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter")
 @Mod.EventBusSubscriber
 class DungeonMod {
@@ -53,10 +52,13 @@ class DungeonMod {
         @JvmStatic
         fun registeritem(e: RegistryEvent.Register<Item>) {
             e.registry.register(Vanargand.setCreativeTab(ctab))
+            e.registry.register(Vanargand_Handle.setCreativeTab(ctab))
+            e.registry.register(Vanargand_Crystal.setCreativeTab(ctab))
             e.registry.register(SoulEater.setCreativeTab(ctab))
             e.registry.register(Gae_Buaifnech.setCreativeTab(ctab))
             e.registry.register(Soul_of_Grim.setCreativeTab(ctab))
             e.registry.register(Scorpion_Tail.setCreativeTab(ctab))
+            e.registry.register(Failnaught.setCreativeTab(ctab))
         }
 
         @SubscribeEvent
@@ -72,18 +74,19 @@ class DungeonMod {
         var shineBlock: Block? = null
         var breakBlock: Block? = null
 
-
-
         // 各種描画関連の登録
         @SubscribeEvent
         @JvmStatic
         @SideOnly(Side.CLIENT)
         fun registerModels(e: ModelRegistryEvent) {
             ModelLoader.setCustomModelResourceLocation(Vanargand, 0, ModelResourceLocation(Vanargand.registryName!!, "inventory"))
+            ModelLoader.setCustomModelResourceLocation(Vanargand_Handle, 0, ModelResourceLocation(Vanargand_Handle.registryName!!, "inventory"))
+            ModelLoader.setCustomModelResourceLocation(Vanargand_Crystal, 0, ModelResourceLocation(Vanargand_Crystal.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(SoulEater, 0, ModelResourceLocation(SoulEater.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(Gae_Buaifnech, 0, ModelResourceLocation(Gae_Buaifnech.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(Soul_of_Grim, 0, ModelResourceLocation(Soul_of_Grim.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(Scorpion_Tail, 0, ModelResourceLocation(Scorpion_Tail.registryName!!, "inventory"))
+            ModelLoader.setCustomModelResourceLocation(Failnaught, 0, ModelResourceLocation(Failnaught.registryName!!, "inventory"))
             Mobs.registerModels()
 
 
@@ -100,11 +103,13 @@ class DungeonMod {
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(osareBlock), 0,
                     net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:osare_block_item_model", "inventory"))
 
+
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(shineBlock), 0,
                     net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:shine_block_item_model", "inventory"))
 
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(breakBlock), 0,
                     net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:break_block_item_model", "inventory"))
+
         }
 
         @Mod.EventHandler

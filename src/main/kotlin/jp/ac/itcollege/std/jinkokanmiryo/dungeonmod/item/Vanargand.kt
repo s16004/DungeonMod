@@ -2,6 +2,7 @@ package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item
 
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.BreakBlock
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.PyramidBlock
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.entity.player.EntityPlayerMP
 import net.minecraft.init.Blocks
@@ -11,6 +12,7 @@ import net.minecraft.util.*
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import net.minecraft.world.WorldServer
+
 
 
 //object Vanargand : ItemPickaxe(ToolMaterial.GOLD){

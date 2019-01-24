@@ -1,0 +1,6 @@
+{
+  "parent": "dungeonmod:item/failnaught",
+  "textures": {
+    "layer0": "dungeonmod:items/failnaught_pulling_2"
+  }
+}

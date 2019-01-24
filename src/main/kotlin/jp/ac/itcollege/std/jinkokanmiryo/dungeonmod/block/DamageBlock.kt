@@ -24,6 +24,7 @@ object DamageBlock : Block(Material.ROCK) {
     init {
         // クリエイティブタブ
         this.setCreativeTab(CreativeTabs.DECORATIONS)
+        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
 
         // 採掘したときの固さ。大きいほど採掘が遅い
         this.setHardness(3.0f)
@@ -40,7 +41,6 @@ object DamageBlock : Block(Material.ROCK) {
         this.unlocalizedName = "damage_block"
         this.registryName = ResourceLocation(DungeonMod.ID, "damage_block")
 
-        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
     }
 
 
