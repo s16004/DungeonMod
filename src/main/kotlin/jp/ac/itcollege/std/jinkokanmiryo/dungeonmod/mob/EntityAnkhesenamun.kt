@@ -1,28 +1,32 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob
 
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.Failnaught
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob.ai.DMEntityAIAttackRangedBow
 import net.minecraft.entity.*
 import net.minecraft.entity.ai.*
 import net.minecraft.entity.monster.EntityMob
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.entity.projectile.EntityArrow
 import net.minecraft.entity.projectile.EntityTippedArrow
+import net.minecraft.init.MobEffects
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
-import net.minecraft.init.Items
 import net.minecraft.init.SoundEvents
 import net.minecraft.item.ItemStack
 import net.minecraft.inventory.EntityEquipmentSlot
 import net.minecraft.network.datasync.DataSerializers
 import net.minecraft.network.datasync.EntityDataManager
+import net.minecraft.potion.PotionEffect
 import net.minecraft.util.math.MathHelper
 import net.minecraft.world.DifficultyInstance
+import net.minecraft.world.EnumDifficulty
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
+class EntityAnkhesenamun(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
 
-    val LOOT_TABLE = ResourceLocation(DungeonMod.ID, "entities/mummy_archer")
+    val LOOT_TABLE = ResourceLocation(DungeonMod.ID, "entities/ankhesenamun")
 
     init {
         setSize(0.6f, 1.95f)
@@ -33,7 +37,6 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
         this.dataManager.register(SWINGING_ARMS, java.lang.Boolean.valueOf(false))
     }
 
-
     override fun initEntityAI() {
         this.tasks.addTask(0, EntityAISwimming(this))
         this.tasks.addTask(3, EntityAIWander(this, 1.0))
@@ -41,13 +44,15 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
         this.tasks.addTask(4, EntityAILookIdle(this))
         this.targetTasks.addTask(1, EntityAIHurtByTarget(this, true))
         this.targetTasks.addTask(2, EntityAINearestAttackableTarget(this, EntityPlayer::class.java, true))
+
     }
 
     override fun applyEntityAttributes() {
         super.applyEntityAttributes()
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).baseValue = 20.0
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).baseValue = 250.0
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).baseValue = 0.26
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).baseValue = 3.0
+        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).baseValue = 4.0
+        getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).baseValue = 0.1
     }
 
     override fun setItemStackToSlot(slotIn: EntityEquipmentSlot, stack: ItemStack) {
@@ -59,7 +64,7 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
 
     override fun setEquipmentBasedOnDifficulty(difficulty: DifficultyInstance) {
         super.setEquipmentBasedOnDifficulty(difficulty)
-        setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemStack(Items.BOW))
+        setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemStack(Failnaught))
     }
 
     override fun onInitialSpawn(difficulty: DifficultyInstance, livingdata: IEntityLivingData?): IEntityLivingData? {
@@ -71,13 +76,30 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
         return livingdata
     }
 
+    override fun onLivingUpdate() {
+        if(this.health <= this.maxHealth / 2) {
+            var i = 0
+
+            if (this.world.difficulty == EnumDifficulty.NORMAL) {
+                i = 7
+            } else if (this.world.difficulty == EnumDifficulty.HARD) {
+                i = 15
+            }
+
+            if (i > 0) {
+                this.addPotionEffect(PotionEffect(MobEffects.STRENGTH, i * 60, 0))
+            }
+        }
+        super.onLivingUpdate()
+    }
+
     private fun setCombatTask() {
         tasks.removeTask(EntityAIAttackMelee(this, 1.0, true))
-        tasks.removeTask(EntityAIAttackRangedBow(this, 2.0, 20, 15.0F))
+        tasks.removeTask(DMEntityAIAttackRangedBow(this, 2.0, 20, 15.0F))
 
         val itemstack = heldItemMainhand
-        if (itemstack.item === Items.BOW) {
-            tasks.addTask(2, EntityAIAttackRangedBow(this, 2.0, 20, 15.0F))
+        if (itemstack.item === Failnaught) {
+            tasks.addTask(2, DMEntityAIAttackRangedBow(this, 2.0, 20, 15.0F))
         } else {
             tasks.addTask(2, EntityAIAttackMelee(this, 1.0, true))
         }
@@ -94,7 +116,7 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
         this.world.spawnEntity(entityarrow)
     }
 
-    protected fun getArrow(p_190726_1_: Float): EntityArrow {
+    private fun getArrow(p_190726_1_: Float): EntityArrow {
         val entitytippedarrow = EntityTippedArrow(this.world, this)
         entitytippedarrow.setEnchantmentEffectsFromEntity(this, p_190726_1_)
         return entitytippedarrow
@@ -102,7 +124,6 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
 
     @SideOnly(Side.CLIENT)
     fun isSwingingArms(): Boolean {
-//        return (this.dataManager.get(SWINGING_ARMS) as Boolean)
         return (this.dataManager.get(SWINGING_ARMS) as Boolean)
     }
 
@@ -113,8 +134,9 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
     companion object {
         private val SWINGING_ARMS = EntityDataManager.createKey(EntityMummyArcher::class.java, DataSerializers.BOOLEAN)
     }
+
     override fun getExperiencePoints(player: EntityPlayer): Int {
-        experienceValue = 12
+        experienceValue = 7000
         return super.getExperiencePoints(player)
     }
 
