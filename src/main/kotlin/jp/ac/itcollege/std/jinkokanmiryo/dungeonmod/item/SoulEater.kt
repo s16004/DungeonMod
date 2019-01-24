@@ -6,23 +6,15 @@ import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.SharedMonsterAttributes
 import net.minecraft.entity.ai.attributes.AttributeModifier
-import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.init.MobEffects
 import net.minecraft.inventory.EntityEquipmentSlot
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemSword
 import net.minecraft.potion.PotionEffect
-import net.minecraft.util.ActionResult
-import net.minecraft.util.EnumActionResult
-import net.minecraft.util.EnumHand
 import net.minecraft.util.ResourceLocation
-import net.minecraft.world.World
-import sun.audio.AudioPlayer.player
 
-object SoulEater : ItemSword(ToolMaterial.IRON)
-{
-    init
-    {
+object SoulEater : ItemSword(ToolMaterial.IRON) {
+    init {
         this.maxStackSize = 1
         this.unlocalizedName = "souleater"
         this.registryName = ResourceLocation(DungeonMod.ID, "SoulEater")
@@ -48,7 +40,6 @@ object SoulEater : ItemSword(ToolMaterial.IRON)
     override fun hitEntity(stack: ItemStack, target: EntityLivingBase, attacker: EntityLivingBase): Boolean {
 
         if (super.hitEntity(stack, target, attacker)) {
-            target.addPotionEffect(PotionEffect(MobEffects.POISON, 70, 0))
             attacker.heal(3.0F)
         }
         return super.hitEntity(stack, target, attacker)
@@ -60,12 +51,10 @@ object SoulEater : ItemSword(ToolMaterial.IRON)
 
         if (slot == EntityEquipmentSlot.MAINHAND) {
             multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.name,
-                    AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier",7.0,0))
+                    AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 7.0, 0))
 
             multimap.put(SharedMonsterAttributes.ATTACK_SPEED.name,
                     AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -2.6, 0))
-
-
 
 
         }

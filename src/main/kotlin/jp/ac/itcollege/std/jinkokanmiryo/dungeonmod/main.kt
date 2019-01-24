@@ -1,7 +1,7 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod
 
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.block.*
-import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.FrostyRod
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.Vanargand
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.Soul_of_Grim
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.*
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob.Mobs
@@ -44,13 +44,15 @@ class DungeonMod {
             e.registry.register(DamageBlock.setCreativeTab(ctab))
             e.registry.register(LightBlock.setCreativeTab(ctab))
             e.registry.register(OsareBlock.setCreativeTab(ctab))
+            e.registry.register(ShineBlock.setCreativeTab(ctab))
+            e.registry.register(BreakBlock.setCreativeTab(ctab))
 
         }
 
         @SubscribeEvent
         @JvmStatic
         fun registeritem(e: RegistryEvent.Register<Item>) {
-            e.registry.register(FrostyRod.setCreativeTab(ctab))
+            e.registry.register(Vanargand.setCreativeTab(ctab))
             e.registry.register(SoulEater.setCreativeTab(ctab))
             e.registry.register(Gae_Buaifnech.setCreativeTab(ctab))
             e.registry.register(Soul_of_Grim.setCreativeTab(ctab))
@@ -67,6 +69,8 @@ class DungeonMod {
         var damageBlock: Block? = null
         var lightBlock: Block? = null
         var osareBlock: Block? = null
+        var shineBlock: Block? = null
+        var breakBlock: Block? = null
 
 
 
@@ -75,7 +79,7 @@ class DungeonMod {
         @JvmStatic
         @SideOnly(Side.CLIENT)
         fun registerModels(e: ModelRegistryEvent) {
-            ModelLoader.setCustomModelResourceLocation(FrostyRod, 0, ModelResourceLocation(FrostyRod.registryName!!, "inventory"))
+            ModelLoader.setCustomModelResourceLocation(Vanargand, 0, ModelResourceLocation(Vanargand.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(SoulEater, 0, ModelResourceLocation(SoulEater.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(Gae_Buaifnech, 0, ModelResourceLocation(Gae_Buaifnech.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(Soul_of_Grim, 0, ModelResourceLocation(Soul_of_Grim.registryName!!, "inventory"))
@@ -96,7 +100,11 @@ class DungeonMod {
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(osareBlock), 0,
                     net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:osare_block_item_model", "inventory"))
 
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(shineBlock), 0,
+                    net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:shine_block_item_model", "inventory"))
 
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(breakBlock), 0,
+                    net.minecraft.client.renderer.block.model.ModelResourceLocation("$MOD_ID:break_block_item_model", "inventory"))
         }
 
         @Mod.EventHandler
