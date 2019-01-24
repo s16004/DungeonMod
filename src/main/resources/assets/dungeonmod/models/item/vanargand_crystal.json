@@ -2,6 +2,6 @@
   "parent": "item/handheld",
   "textures":
   {
-    "layer0": "dungeonmod:items/frostyrod_handle"
+    "layer0": "dungeonmod:items/vanargand_crystal"
   }
 }

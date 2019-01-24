@@ -17,7 +17,7 @@ object Vanargand : ItemPickaxe(ToolMaterial.GOLD) {
     init {
         this.maxDamage = 10
         this.maxStackSize = 1
-        this.unlocalizedName = "frostyrod"
+        this.unlocalizedName = "vanargand"
         this.registryName = ResourceLocation(DungeonMod.ID, "Vanargand")
     }
 

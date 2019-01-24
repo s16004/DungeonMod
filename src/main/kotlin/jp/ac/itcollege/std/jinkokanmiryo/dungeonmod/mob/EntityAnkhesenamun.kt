@@ -51,6 +51,7 @@ class EntityAnkhesenamun(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
         super.applyEntityAttributes()
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).baseValue = 250.0
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).baseValue = 0.26
+        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).baseValue = 4.0
         getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).baseValue = 0.1
     }
 
@@ -86,7 +87,7 @@ class EntityAnkhesenamun(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
             }
 
             if (i > 0) {
-                this.addPotionEffect(PotionEffect(MobEffects.RESISTANCE, i * 60, 0))
+                this.addPotionEffect(PotionEffect(MobEffects.STRENGTH, i * 60, 0))
             }
         }
         super.onLivingUpdate()
@@ -115,7 +116,7 @@ class EntityAnkhesenamun(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
         this.world.spawnEntity(entityarrow)
     }
 
-    protected fun getArrow(p_190726_1_: Float): EntityArrow {
+    private fun getArrow(p_190726_1_: Float): EntityArrow {
         val entitytippedarrow = EntityTippedArrow(this.world, this)
         entitytippedarrow.setEnchantmentEffectsFromEntity(this, p_190726_1_)
         return entitytippedarrow

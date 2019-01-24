@@ -16,7 +16,6 @@ object SoulEater : ItemSword(ToolMaterial.IRON) {
         this.maxStackSize = 1
         this.unlocalizedName = "souleater"
         this.registryName = ResourceLocation(DungeonMod.ID, "SoulEater")
-
     }
 
     /*経験値消費でHP回復
@@ -53,9 +52,7 @@ object SoulEater : ItemSword(ToolMaterial.IRON) {
 
             multimap.put(SharedMonsterAttributes.ATTACK_SPEED.name,
                     AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -2.6, 0))
-
         }
-
         return multimap
     }
 }

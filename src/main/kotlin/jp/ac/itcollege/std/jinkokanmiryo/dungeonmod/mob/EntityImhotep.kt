@@ -47,7 +47,7 @@ class EntityImhotep(worldIn: World) : EntityMob(worldIn) {
             }
 
             if (i > 0) {
-                this.addPotionEffect(PotionEffect(MobEffects.STRENGTH, i * 60, 0))
+                this.addPotionEffect(PotionEffect(MobEffects.RESISTANCE, i * 60, 0))
             }
         }
         super.onLivingUpdate()
@@ -68,7 +68,7 @@ class EntityImhotep(worldIn: World) : EntityMob(worldIn) {
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).baseValue = 350.0
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).baseValue = 0.3
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).baseValue = 8.0
-        getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).baseValue = 0.3
+        getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).baseValue = 1.0
     }
 
     override fun setEquipmentBasedOnDifficulty(difficulty: DifficultyInstance) {
