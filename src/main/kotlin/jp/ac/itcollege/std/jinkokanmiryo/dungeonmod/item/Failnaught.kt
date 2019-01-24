@@ -12,7 +12,9 @@ import net.minecraft.item.*
 import net.minecraft.stats.StatList
 import net.minecraft.util.*
 import net.minecraft.world.World
-
+import net.minecraftforge.common.MinecraftForge
+import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.common.event.FMLConstructionEvent
 
 object Failnaught : ItemBow() {
     init {
@@ -102,7 +104,7 @@ object Failnaught : ItemBow() {
         }
     }
 
-    private fun findAmmo(player: EntityPlayer): ItemStack {
+   private fun findAmmo(player: EntityPlayer): ItemStack {
         if (this.isArrow(player.getHeldItem(EnumHand.OFF_HAND))) {
             return player.getHeldItem(EnumHand.OFF_HAND)
         } else if (this.isArrow(player.getHeldItem(EnumHand.MAIN_HAND))) {
@@ -120,10 +122,6 @@ object Failnaught : ItemBow() {
         }
     }
 
-    override fun getItemUseAction(stack: ItemStack): EnumAction {
-        return EnumAction.BOW
-    }
-
     override fun onItemRightClick(worldIn: World, playerIn: EntityPlayer, handIn: EnumHand): ActionResult<ItemStack> {
         val itemstack = playerIn.getHeldItem(handIn)
         val flag = !this.findAmmo(playerIn).isEmpty
@@ -139,4 +137,8 @@ object Failnaught : ItemBow() {
         }
     }
 
+    @Mod.EventHandler
+    fun construction(event: FMLConstructionEvent) {
+        MinecraftForge.EVENT_BUS.register(this)
+    }
 }

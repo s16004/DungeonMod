@@ -2,16 +2,15 @@
   "type": "forge:ore_shaped",
   "pattern": [
     "#",
-    "w",
     "w"
   ],
   "key": {
     "#": {
-      "item": "minecraft:ice",
+      "item": "dungeonmod:frostyrod_crystal",
       "data": 0
     },
     "w": {
-      "item": "minecraft:stick",
+      "item": "dungeonmod:frostyrod_handle",
       "data": 0
     }
   },

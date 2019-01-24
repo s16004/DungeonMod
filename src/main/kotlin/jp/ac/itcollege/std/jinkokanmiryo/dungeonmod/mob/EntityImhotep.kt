@@ -1,24 +1,20 @@
 package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob
 
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
-import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.FrostyRod
+import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.item.Vanargand
 import net.minecraft.entity.IEntityLivingData
 import net.minecraft.entity.SharedMonsterAttributes
 import net.minecraft.entity.ai.*
 import net.minecraft.entity.monster.EntityMob
-import net.minecraft.entity.monster.EntityZombie
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.entity.player.EntityPlayerMP
-import net.minecraft.init.Items
+import net.minecraft.init.MobEffects
 import net.minecraft.inventory.EntityEquipmentSlot
 import net.minecraft.item.ItemStack
-import net.minecraft.network.datasync.DataSerializers
-import net.minecraft.network.datasync.EntityDataManager
+import net.minecraft.potion.PotionEffect
 import net.minecraft.util.ResourceLocation
-import net.minecraft.world.BossInfo
 import net.minecraft.world.DifficultyInstance
+import net.minecraft.world.EnumDifficulty
 import net.minecraft.world.World
-import net.minecraft.world.BossInfoServer
 
 class EntityImhotep(worldIn: World) : EntityMob(worldIn) {
 
@@ -40,6 +36,23 @@ class EntityImhotep(worldIn: World) : EntityMob(worldIn) {
         return livingData
     }
 
+    override fun onLivingUpdate() {
+        if(this.health <= this.maxHealth / 2) {
+            var i = 0
+
+            if (this.world.difficulty == EnumDifficulty.NORMAL) {
+                i = 7
+            } else if (this.world.difficulty == EnumDifficulty.HARD) {
+                i = 15
+            }
+
+            if (i > 0) {
+                this.addPotionEffect(PotionEffect(MobEffects.RESISTANCE, i * 60, 0))
+            }
+        }
+        super.onLivingUpdate()
+    }
+
     override fun initEntityAI() {
         this.tasks.addTask(0, EntityAISwimming(this))
         this.tasks.addTask(3, EntityAIAttackMelee(this, 1.0, false))
@@ -52,41 +65,43 @@ class EntityImhotep(worldIn: World) : EntityMob(worldIn) {
 
     override fun applyEntityAttributes() {
         super.applyEntityAttributes()
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).baseValue = 250.0
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).baseValue = 350.0
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).baseValue = 0.3
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).baseValue = 8.0
+        getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).baseValue = 1.0
     }
 
     override fun setEquipmentBasedOnDifficulty(difficulty: DifficultyInstance) {
         super.setEquipmentBasedOnDifficulty(difficulty)
-        setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemStack(FrostyRod))
-        setItemStackToSlot(EntityEquipmentSlot.OFFHAND, ItemStack(FrostyRod))
-    }
-/*
-    override fun updateAITasks() {
-        this.bossInfo.percent = this.health / this.maxHealth
-
+        setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemStack(Vanargand))
+        //setItemStackToSlot(EntityEquipmentSlot.OFFHAND, ItemStack(Vanargand))
     }
 
-    override fun setCustomNameTag(name: String) {
-        super.setCustomNameTag(name)
-        this.bossInfo.name = this.displayName
-    }
+    /*
+        override fun updateAITasks() {
+            this.bossInfo.percent = this.health / this.maxHealth
 
-    override fun addTrackingPlayer(player: EntityPlayerMP) {
-        super.addTrackingPlayer(player)
-        this.bossInfo.addPlayer(player)
-    }
+        }
 
-    override fun removeTrackingPlayer(player: EntityPlayerMP) {
-        super.removeTrackingPlayer(player)
-        this.bossInfo.removePlayer(player)
-    }
+        override fun setCustomNameTag(name: String) {
+            super.setCustomNameTag(name)
+            this.bossInfo.name = this.displayName
+        }
 
-    fun setArmsRaised(armsRaised: Boolean) {
-        this.getDataManager().set(ARMS_RAISED, java.lang.Boolean.valueOf(armsRaised))
-    }
-*/
+        override fun addTrackingPlayer(player: EntityPlayerMP) {
+            super.addTrackingPlayer(player)
+            this.bossInfo.addPlayer(player)
+        }
+
+        override fun removeTrackingPlayer(player: EntityPlayerMP) {
+            super.removeTrackingPlayer(player)
+            this.bossInfo.removePlayer(player)
+        }
+
+        fun setArmsRaised(armsRaised: Boolean) {
+            this.getDataManager().set(ARMS_RAISED, java.lang.Boolean.valueOf(armsRaised))
+        }
+    */
     override fun getExperiencePoints(player: EntityPlayer): Int {
         experienceValue = 10000
         return super.getExperiencePoints(player)

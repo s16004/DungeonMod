@@ -13,12 +13,12 @@ import net.minecraft.world.World
 import net.minecraft.world.WorldServer
 
 
-object FrostyRod : ItemPickaxe(ToolMaterial.GOLD) {
+object Vanargand : ItemPickaxe(ToolMaterial.GOLD) {
     init {
         this.maxDamage = 10
         this.maxStackSize = 1
-        this.unlocalizedName = "frostyrod"
-        this.registryName = ResourceLocation(DungeonMod.ID, "FrostyRod")
+        this.unlocalizedName = "vanargand"
+        this.registryName = ResourceLocation(DungeonMod.ID, "Vanargand")
     }
 
     override fun onItemUse(player: EntityPlayer?, worldIn: World?, pos: BlockPos?, hand: EnumHand?, facing: EnumFacing?, hitX: Float, hitY: Float, hitZ: Float): EnumActionResult {
@@ -40,7 +40,7 @@ object FrostyRod : ItemPickaxe(ToolMaterial.GOLD) {
     }
 
     private fun freeze(player: EntityPlayerMP, w: WorldServer, pos: BlockPos) {
-        w.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, true,
+        w.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, true,
                 pos.x + 0.5, pos.y + 0.5, pos.z + 0.5, 20, 0.0, 0.0, 0.0, 0.1)
         w.setBlockState(pos, Blocks.SNOW.defaultState, 3)
     }

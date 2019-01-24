@@ -3,7 +3,6 @@ package jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.mob
 import jp.ac.itcollege.std.jinkokanmiryo.dungeonmod.DungeonMod
 import net.minecraft.entity.*
 import net.minecraft.entity.ai.*
-import net.minecraft.entity.monster.AbstractSkeleton
 import net.minecraft.entity.monster.EntityMob
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.entity.projectile.EntityArrow
@@ -33,6 +32,7 @@ class EntityMummyArcher(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
         super.entityInit()
         this.dataManager.register(SWINGING_ARMS, java.lang.Boolean.valueOf(false))
     }
+
 
     override fun initEntityAI() {
         this.tasks.addTask(0, EntityAISwimming(this))
