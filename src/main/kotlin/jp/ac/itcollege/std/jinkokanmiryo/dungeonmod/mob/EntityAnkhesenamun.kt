@@ -45,6 +45,7 @@ class EntityAnkhesenamun(worldIn: World) : EntityMob(worldIn), IRangedAttackMob{
         this.targetTasks.addTask(1, EntityAIHurtByTarget(this, true))
         this.targetTasks.addTask(2, EntityAINearestAttackableTarget(this, EntityPlayer::class.java, true))
 
+
     }
 
     override fun applyEntityAttributes() {

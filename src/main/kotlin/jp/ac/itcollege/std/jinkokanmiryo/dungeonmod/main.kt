@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.registry.EntityEntry
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.common.ForgeVersion.MOD_ID
-
+import net.minecraft.world.gen.structure.template.TemplateManager
 
 @Mod(modid = DungeonMod.ID, name = DungeonMod.Name, version = DungeonMod.Version, modLanguage = "kotlin", modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter")
 @Mod.EventBusSubscriber
